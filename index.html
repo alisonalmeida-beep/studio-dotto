@@ -830,8 +830,8 @@
 
   <div class="nav-center">
     <a href="#" class="active">Home</a>
-    <a href="#projetos">Projetos</a>
     <a href="#sobre">Sobre</a>
+    <a href="#projetos">Projetos</a>
     <a href="#contato">Contato</a>
   </div>
 
@@ -1121,6 +1121,15 @@
 </footer>
 
 <script>
+  // Nav active state
+  const navLinks = document.querySelectorAll('.nav-center a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
   function toggleFaq(trigger) {
     const item = trigger.closest('.faq-item');
     const isOpen = item.classList.contains('open');
