@@ -82,7 +82,7 @@
   .video-hero {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 120px clamp(10px, 2.5vw, 24px) 0;
+    padding: 120px clamp(10px, 2.5vw, 24px) 24px;
     width: 100%;
   }
 
@@ -354,7 +354,7 @@
   </div>
 
   <!-- DESAFIO + OBJETIVO -->
-  <div class="section reveal">
+  <div class="section reveal" id="sec-desafio">
     <div class="section-grid">
       <div>
         <span class="section-label">Desafio</span>
@@ -374,7 +374,7 @@
   </div>
 
   <!-- IMAGENS -->
-  <div class="section reveal">
+  <div class="section reveal" id="sec-visual">
     <span class="section-label">Visual</span>
     <div class="image-full">
       <img src="logo-concept-escritorio-inteligente.gif" alt="Logo Concept" class="project-img">
@@ -388,7 +388,7 @@
   </div>
 
   <!-- BRAND PLATFORM -->
-  <div class="section reveal">
+  <div class="section reveal" id="sec-plataforma">
     <div class="section-grid">
       <div>
         <span class="section-label">Plataforma de Marca</span>
@@ -432,7 +432,7 @@
   </div>
 
   <!-- ASSETS -->
-  <div class="section reveal">
+  <div class="section reveal" id="sec-aplicacoes">
     <span class="section-label">Aplicações</span>
     <div class="image-full">
       <img src="mockup-bag-escritorio-inteligente.gif" alt="Mockup Bag" class="project-img">
@@ -475,6 +475,24 @@
     </div>
   </div>
 
+  <!-- CREDITOS -->
+  <div class="section reveal" id="sec-creditos">
+    <span class="section-label">Créditos</span>
+    <div class="section-grid">
+      <div>
+        <p class="section-text">
+          <strong>Direção de Branding:</strong> Diego Mourão<br>
+          <strong>Estratégia de Marca:</strong> Joyce Lima<br>
+          <strong>Design de Logo e Direção de Arte:</strong> Klayton Fadul<br>
+          <strong>Direção de Arte do Case:</strong> Alison Almeida &amp; Klayton Fadul<br>
+          <strong>Copywriting do Case:</strong> Joyce Lima<br>
+          <strong>Motion:</strong> Klayton Fadul<br>
+          <strong>Cliente:</strong> Escritório Inteligente
+        </p>
+      </div>
+    </div>
+  </div>
+
   <!-- NEXT PROJECT -->
   <div class="next-project reveal">
     <div>
@@ -488,6 +506,7 @@
 </div>
 
 <script>
+  // Reveal observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
