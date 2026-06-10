@@ -635,37 +635,43 @@
 
   /* FAQ */
   .faq-header {
-    margin-bottom: 48px;
+    margin-bottom: 24px;
   }
 
-  .faq-list {
+  .faq-grid {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid var(--border);
+    gap: 12px;
   }
 
   .faq-item {
-    border-bottom: 1px solid var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg);
+    transition: border-color 0.2s;
   }
+
+  .faq-item:hover { border-color: var(--border-hover); }
 
   .faq-trigger {
     width: 100%;
     background: none;
     border: none;
-    padding: 24px 0;
+    padding: 20px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
     text-align: left;
     color: var(--text);
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
     font-family: 'IBM Plex Sans', sans-serif;
-    gap: 24px;
+    gap: 16px;
   }
 
-  .faq-trigger:hover { color: var(--orange); }
+  .faq-trigger:hover { color: var(--text); }
 
   .faq-icon {
     width: 28px;
@@ -692,16 +698,18 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.35s ease, padding 0.35s ease;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--text-muted);
     line-height: 1.7;
-    padding: 0;
+    padding: 0 24px;
   }
 
   .faq-item.open .faq-answer {
-    max-height: 400px;
-    padding-bottom: 24px;
+    max-height: 300px;
+    padding: 0 24px 20px;
   }
+
+
 
   /* FOOTER */
   footer {
@@ -1082,7 +1090,6 @@
     <div class="projetos-header">
       <div>
         <span class="section-label">Projetos</span>
-        <h2 class="section-title">Trabalhos selecionados</h2>
       </div>
     </div>
     <div class="projetos-grid">
@@ -1159,9 +1166,8 @@
   <div class="reveal">
     <div class="faq-header">
       <span class="section-label">Dúvidas frequentes</span>
-      <h2 class="section-title">Perguntas comuns</h2>
     </div>
-    <div class="faq-list">
+    <div class="faq-grid">
 
       <div class="faq-item">
         <button class="faq-trigger" onclick="toggleFaq(this)">
@@ -1259,7 +1265,7 @@
     document.body.style.overflow = '';
   }
 
-  // Nav active state
+  // Nav active state on click
   const navLinks = document.querySelectorAll('.nav-center a');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -1267,6 +1273,35 @@
       link.classList.add('active');
     });
   });
+
+  // Nav active state on scroll
+  const sections = [
+    { id: 'home', el: document.querySelector('.hero') },
+    { id: 'sobre', el: document.getElementById('sobre') },
+    { id: 'projetos', el: document.getElementById('projetos') },
+    { id: 'contato', el: document.getElementById('contato') },
+  ];
+
+  const navMap = {
+    'home': document.querySelector('.nav-center a[href="#"]'),
+    'sobre': document.querySelector('.nav-center a[href="#sobre"]'),
+    'projetos': document.querySelector('.nav-center a[href="#projetos"]'),
+    'contato': document.querySelector('.nav-center a[href="#contato"]'),
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const matched = sections.find(s => s.el === entry.target);
+        if (matched) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          if (navMap[matched.id]) navMap[matched.id].classList.add('active');
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => { if (s.el) sectionObserver.observe(s.el); });
 
   function toggleFaq(trigger) {
     const item = trigger.closest('.faq-item');
