@@ -42,21 +42,33 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
-    padding: 20px 48px;
-    background: rgba(245,243,239,0.88);
+    padding: 20px 32px;
+    background: rgba(245,243,239,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
 
-  .nav-logo {
+  .nav-left {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .nav-left-name {
+    font-size: 13px;
+    font-weight: 600;
     color: var(--text);
+    text-decoration: none;
+    line-height: 1.2;
+  }
+
+  .nav-left-location {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
   }
 
   .nav-logo-img {
@@ -67,224 +79,178 @@
     object-fit: cover;
   }
 
-  .nav-logo-mark {
-    width: 32px;
-    height: 32px;
-    background: var(--orange);
-    border-radius: 8px;
+  .nav-center {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    color: #fff;
-    letter-spacing: -0.5px;
+    background: var(--text);
+    border-radius: 100px;
+    padding: 4px;
+    gap: 2px;
   }
 
-  .nav-logo-text {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    letter-spacing: -0.3px;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 36px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text-muted);
+  .nav-center a {
+    color: rgba(245,243,239,0.55);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
-    transition: color 0.2s;
+    padding: 6px 16px;
+    border-radius: 100px;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
   }
 
-  .nav-links a:hover { color: var(--text); }
+  .nav-center a:hover { color: rgba(245,243,239,0.9); }
+
+  .nav-center a.active {
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 500;
+  }
 
   .nav-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: flex-end;
+    gap: 8px;
   }
 
-  .nav-cta {
-    background: var(--orange);
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 9px 20px;
-    border-radius: 100px;
-    transition: background 0.2s, transform 0.15s;
-    white-space: nowrap;
+  .nav-right-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-right: 4px;
   }
 
-  .nav-cta:hover { background: var(--orange-light); transform: translateY(-1px); }
-
-  .nav-questions {
+  .nav-social {
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
     transition: color 0.2s;
+    padding: 2px 4px;
   }
 
-  .nav-questions:hover { color: var(--text); }
+  .nav-social:hover { color: var(--text); }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: 0.2s;
+  }
 
   /* HERO */
   .hero {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 120px 48px 80px;
-    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 0 32px 48px;
+    padding-top: 80px;
     position: relative;
     overflow: hidden;
   }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(232,64,10,0.08) 0%, transparent 70%);
-    pointer-events: none;
+  .hero-body {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    align-items: flex-end;
+    padding-bottom: 40px;
+    gap: 40px;
   }
 
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(232,64,10,0.12);
-    border: 1px solid rgba(232,64,10,0.25);
-    border-radius: 100px;
-    padding: 6px 16px;
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding-bottom: 8px;
+  }
+
+  .hero-left-bio {
     font-size: 12px;
-    font-weight: 500;
-    color: var(--orange);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-bottom: 32px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 180px;
   }
 
-  .hero-eyebrow::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    background: var(--orange);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
+  .hero-left-meta {
+    font-size: 11px;
+    color: var(--text-subtle);
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
+  .hero-left-meta span {
+    color: var(--text-muted);
   }
 
   .hero-title {
     font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 700;
-    font-size: clamp(48px, 7vw, 88px);
+    font-size: clamp(48px, 6.5vw, 96px);
     line-height: 1.0;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
     color: var(--text);
-    max-width: 900px;
-    margin-bottom: 24px;
   }
 
   .hero-title span { color: var(--orange); }
 
-  .hero-sub {
-    font-size: 18px;
+  .hero-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .hero-bottom-left {
+    font-size: 12px;
     color: var(--text-muted);
-    max-width: 560px;
-    line-height: 1.7;
-    margin-bottom: 48px;
   }
 
   .hero-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 12px;
   }
 
   .btn-primary {
-    background: var(--orange);
-    color: #fff;
+    background: var(--text);
+    color: var(--bg);
     text-decoration: none;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
-    padding: 14px 28px;
+    padding: 10px 22px;
     border-radius: 100px;
-    transition: background 0.2s, transform 0.15s;
+    transition: opacity 0.2s;
   }
 
-  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+  .btn-primary:hover { opacity: 0.8; }
 
   .btn-ghost {
     background: transparent;
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 400;
-    padding: 14px 28px;
+    padding: 10px 22px;
     border-radius: 100px;
     border: 1px solid var(--border);
     transition: border-color 0.2s, color 0.2s;
   }
 
   .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); }
-
-  .hero-photo-wrap {
-    margin-top: 60px;
-    position: relative;
-    display: inline-block;
-  }
-
-  .hero-photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--bg3);
-    display: block;
-  }
-
-  .hero-photo-fallback {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: var(--bg3);
-    border: 3px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 48px;
-    color: var(--orange);
-  }
-
-  .hero-badge {
-    position: absolute;
-    bottom: 8px;
-    right: -10px;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 6px 14px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text);
-    white-space: nowrap;
-  }
 
   /* SECTION COMMON */
   section {
@@ -827,14 +793,17 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links, .nav-questions { display: none; }
+    nav { grid-template-columns: 1fr auto; padding: 16px 20px; }
+    .nav-center { display: none; }
+    .nav-right-label, .nav-social { display: none; }
     .nav-hamburger { display: flex; }
 
-    section { padding: 72px 24px; }
-    .hero { padding: 100px 24px 60px; }
-    .hero-title { font-size: clamp(36px, 10vw, 64px); }
+    .hero { padding: 80px 20px 32px; }
+    .hero-body { grid-template-columns: 1fr; gap: 32px; align-items: flex-start; padding-top: 40px; }
+    .hero-left { gap: 24px; }
+    .hero-title { font-size: clamp(40px, 11vw, 72px); }
 
+    section { padding: 72px 24px; }
     .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
 
     .processo-wrap { padding: 40px 24px; }
@@ -854,21 +823,25 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
-    <img src="logo.png" alt="Studio Dotto" class="nav-logo-img">
-    <span class="nav-logo-text">Studio Dotto</span>
-  </a>
+  <div class="nav-left">
+    <a href="#" class="nav-left-name">Studio Dotto</a>
+    <span class="nav-left-location">Juazeiro do Norte, Brasil</span>
+  </div>
 
-  <ul class="nav-links">
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#projetos">Projetos</a></li>
-    <li><a href="#contato">Contato</a></li>
-  </ul>
+  <div class="nav-center">
+    <a href="#" class="active">Home</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+  </div>
 
   <div class="nav-right">
-    <a href="#faq" class="nav-questions">Dúvidas?</a>
-    <a href="https://calendly.com/alisonalmeidadsn/30min" target="_blank" class="nav-cta">Marcar reunião</a>
-    <button class="nav-hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">
+    <span class="nav-right-label">Social</span>
+    <a href="https://www.behance.net/" target="_blank" class="nav-social">BE</a>
+    <a href="https://dribbble.com/" target="_blank" class="nav-social">DR</a>
+    <a href="https://www.linkedin.com/in/alisonalmeidadsn/" target="_blank" class="nav-social">LI</a>
+    <a href="https://www.instagram.com/studiodotto/" target="_blank" class="nav-social">IG</a>
+    <button class="nav-hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -876,14 +849,20 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">Disponível para projetos</div>
-  <h1 class="hero-title">Brand &amp; Product<br><span>Designer</span></h1>
-  <p class="hero-sub">Designer com mais de 6 anos de experiência em branding e produtos digitais para startups.</p>
-  <div class="hero-actions">
-    <a href="#projetos" class="btn-primary">Ver projetos</a>
-    <a href="#contato" class="btn-ghost">Vamos conversar</a>
+  <div class="hero-body">
+    <div class="hero-left">
+      <p class="hero-left-bio">Mais de 6 anos criando marcas e produtos digitais para startups. Design com método, entregue com intenção.</p>
+      <p class="hero-left-meta">Atualizado em <span>06 · 2026</span></p>
+    </div>
+    <h1 class="hero-title">Brand &amp; Product<br>Designer<br>baseado no<br><span>Brasil</span></h1>
   </div>
-
+  <div class="hero-bottom">
+    <span class="hero-bottom-left">Disponível para novos projetos</span>
+    <div class="hero-actions">
+      <a href="#projetos" class="btn-primary">Ver projetos</a>
+      <a href="#contato" class="btn-ghost">Vamos conversar</a>
+    </div>
+  </div>
 </div>
 
 <div class="section-divider"></div>
