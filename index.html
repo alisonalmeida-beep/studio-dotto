@@ -196,13 +196,23 @@
   /* HERO */
   .hero {
     min-height: 100vh;
-    display: grid;
-    grid-template-rows: 1fr auto;
-    padding: 0 clamp(10px, 2.5vw, 24px) 24px;
-    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     position: relative;
     overflow: hidden;
+    padding-top: 80px;
+    padding-bottom: 24px;
+  }
+
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(10px, 2.5vw, 24px);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    flex: 1;
+    width: 100%;
   }
 
   .hero-body {
@@ -297,12 +307,15 @@
 
   /* SECTION COMMON */
   section {
-    padding: clamp(30px, 4vw, 50px) clamp(10px, 2.5vw, 24px);
-    max-width: 1280px;
-    margin: 0 auto;
+    padding: clamp(30px, 4vw, 50px) 0;
     width: 100%;
   }
 
+  .section-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(10px, 2.5vw, 24px);
+  }
   .section-label {
     display: inline-block;
     font-size: 11px;
@@ -766,11 +779,18 @@
   /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
-    padding: 24px clamp(10px, 2.5vw, 24px);
+    padding: 24px 0;
+    width: 100%;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(10px, 2.5vw, 24px);
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     flex-wrap: wrap;
     gap: 20px;
   }
@@ -781,6 +801,14 @@
     gap: 10px;
     text-decoration: none;
     color: var(--text);
+  }
+
+  .footer-logo-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    display: block;
+    object-fit: cover;
   }
 
   .footer-logo-mark {
@@ -1068,6 +1096,7 @@
 
 <!-- HERO -->
 <div class="hero">
+  <div class="hero-inner">
   <div class="hero-body">
     <div class="hero-left">
       <p class="hero-left-bio">Mais de 6 anos criando marcas e produtos digitais para startups. Design com método, entregue com intenção.</p>
@@ -1082,12 +1111,14 @@
       <a href="#contato" class="btn-ghost">Vamos conversar</a>
     </div>
   </div>
+  </div>
 </div>
 
 <div class="section-divider"></div>
 
 <!-- SOBRE -->
 <section id="sobre">
+  <div class="section-inner">
   <div class="reveal">
     <span class="section-label">Sobre</span>
     <div class="sobre-grid">
@@ -1134,12 +1165,14 @@
 
     </div>
   </div>
+  </div>
 </section>
 
 <div class="section-divider"></div>
 
 <!-- PROCESSO -->
 <section>
+  <div class="section-inner">
   <div class="processo-wrap reveal">
     <div class="processo-header">
       <div>
@@ -1165,12 +1198,14 @@
       </div>
     </div>
   </div>
+  </div>
 </section>
 
 <div class="section-divider"></div>
 
 <!-- PROJETOS -->
 <section id="projetos">
+  <div class="section-inner">
   <div class="reveal">
     <div class="projetos-header">
       <div>
@@ -1229,12 +1264,14 @@
 
     </div>
   </div>
+  </div>
 </section>
 
 <div class="section-divider"></div>
 
 <!-- CONTATO -->
 <section id="contato">
+  <div class="section-inner">
   <div class="contato-wrap reveal">
     <h2 class="contato-title">Tem um projeto<br>em mente?<br><span>Vamos conversar</span></h2>
     <a href="https://calendly.com/alisonalmeidadsn/30min" target="_blank" class="contato-cta">
@@ -1242,12 +1279,14 @@
       <span class="contato-cta-arrow">↗</span>
     </a>
   </div>
+  </div>
 </section>
 
 <div class="section-divider"></div>
 
 <!-- FAQ -->
 <section id="faq">
+  <div class="section-inner">
   <div class="reveal">
     <div class="faq-header">
       <span class="section-label">Dúvidas frequentes</span>
@@ -1320,12 +1359,14 @@
 
     </div>
   </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
+  <div class="footer-inner">
   <a href="#" class="footer-logo">
-    <img src="logo.png" alt="Studio Dotto" class="nav-logo-img">
+    <img src="logo.png" alt="Studio Dotto" class="footer-logo-img">
     <span class="footer-logo-text">Studio Dotto</span>
   </a>
   <ul class="footer-links">
@@ -1335,6 +1376,7 @@
     <li><a href="#faq">Dúvidas</a></li>
   </ul>
   <span class="footer-copy">© 2026. Todos os direitos reservados.</span>
+  </div>
 </footer>
 
 <!-- BACK TO TOP -->
