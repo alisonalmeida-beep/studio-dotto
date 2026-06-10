@@ -1018,11 +1018,8 @@
     pointer-events: all;
   }
 
-  .mobile-menu-zone {
-    padding: 0 24px;
-  }
-
-  .mobile-menu-zone + .mobile-menu-zone {
+  .mobile-menu-zone-nav,
+  .mobile-menu-zone-cta {
     border-top: 1px solid var(--border);
   }
 
@@ -1031,38 +1028,39 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 24px;
   }
 
   .mobile-menu-close {
-    background: var(--bg2);
-    border: 1px solid rgba(0,0,0,0.12);
+    background: var(--bg);
     color: var(--text);
-    font-size: 18px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 8px 18px;
+    border-radius: 100px;
+    border: 1px solid rgba(0,0,0,0.12);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.6);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
-    flex-shrink: 0;
+    transition: box-shadow 0.15s, border-color 0.15s;
     line-height: 1;
   }
 
-  .mobile-menu-close:hover { background: var(--bg3); }
+  .mobile-menu-close:hover {
+    border-color: rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+  }
 
   /* Zona 2 — navegação */
   .mobile-menu-zone-nav {
     flex: 1;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 0;
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding: 32px 24px;
   }
 
   .mobile-menu-links {
@@ -1070,9 +1068,9 @@
     background: none;
     backdrop-filter: none;
     border-bottom: none;
-    align-items: stretch;
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 0;
     z-index: auto;
   }
@@ -1082,45 +1080,70 @@
     color: var(--text-muted);
     font-size: 30px;
     font-weight: 400;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.5px;
     padding: 10px 0;
     transition: color 0.15s;
     line-height: 1.2;
+    text-align: center;
   }
 
   .mobile-menu-links a:hover { color: var(--text); }
 
-  /* Zona 3 — rodapé social */
+  /* Zona 3 — ícones sociais */
   .mobile-menu-zone-footer {
-    padding-top: 24px;
-    padding-bottom: 32px;
+    padding: 24px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .mobile-menu-social-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-subtle);
+    justify-content: center;
+    align-items: center;
   }
 
   .mobile-menu-socials {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
   }
 
   .mobile-menu-socials a {
     text-decoration: none;
     color: var(--text-muted);
-    font-size: 13px;
+    display: flex;
+    align-items: center;
     transition: color 0.15s;
   }
 
   .mobile-menu-socials a:hover { color: var(--text); }
+
+  /* Zona 4 — CTA reunião */
+  .mobile-menu-zone-cta {
+    padding: 16px 24px 24px;
+  }
+
+  .mobile-menu-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: var(--orange);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px 24px;
+    border-radius: 100px;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: background 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
+
+  .mobile-menu-cta:hover {
+    background: var(--orange-light);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
 
 
   .reveal {
@@ -1171,13 +1194,23 @@
       <a href="#contato" onclick="closeMobileMenu()">Contato</a>
     </nav>
   </div>
-  <!-- Zona 3: social -->
+  <!-- Zona 3: ícones sociais -->
   <div class="mobile-menu-zone mobile-menu-zone-footer">
-    <span class="mobile-menu-social-label">Social</span>
     <div class="mobile-menu-socials">
-      <a href="https://www.instagram.com/oalisonorsi/" target="_blank">Instagram</a>
-      <a href="https://www.linkedin.com/in/oalisonalmeida/" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/oalisonorsi/" target="_blank" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/oalisonalmeida/" target="_blank" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
     </div>
+  </div>
+  <!-- Zona 4: CTA reunião -->
+  <div class="mobile-menu-zone mobile-menu-zone-cta">
+    <a href="https://calendly.com/alisonalmeidadsn/30min" target="_blank" class="mobile-menu-cta" onclick="closeMobileMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+      Marcar reunião
+    </a>
   </div>
 </div>
 
