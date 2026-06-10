@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Studio Dotto — Brand Product Designer">
 <title>Studio Dotto</title>
+<link rel="icon" href="assets/logotype/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logotype/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -53,22 +55,13 @@
 
   .nav-left {
     display: flex;
-    flex-direction: column;
-    gap: 1px;
+    align-items: center;
   }
 
-  .nav-left-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    text-decoration: none;
-    line-height: 1.2;
-  }
-
-  .nav-left-location {
-    font-size: 11px;
-    color: var(--text-muted);
-    font-weight: 400;
+  .nav-left-logo {
+    display: block;
+    height: 24px;
+    width: auto;
   }
 
   .nav-logo-img {
@@ -431,8 +424,13 @@
 
   .sobre-foto-icon {
     display: flex;
-    gap: 4px;
-    opacity: 0.6;
+    align-items: center;
+  }
+
+  .sobre-foto-logo {
+    height: 28px;
+    width: auto;
+    filter: brightness(0) invert(1);
   }
 
   .sobre-content {
@@ -807,64 +805,133 @@
 
   /* FOOTER */
   footer {
-    border-top: 1px solid var(--border);
-    padding: 24px 0;
+    background: var(--text);
     width: 100%;
   }
 
   .footer-inner {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 clamp(10px, 2.5vw, 24px);
-    width: 100%;
+    padding: 0 clamp(20px, 4vw, 48px);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 64px;
+    align-items: start;
+    padding: 64px 0 56px;
+  }
+
+  .footer-brand {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    gap: 16px;
   }
 
   .footer-logo {
+    display: block;
+    text-decoration: none;
+  }
+
+  .footer-logo img {
+    height: 28px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .footer-tagline {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+    max-width: 260px;
+  }
+
+  .footer-cta {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 11px 22px;
+    border-radius: 100px;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: background 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+    width: fit-content;
+  }
+
+  .footer-cta:hover {
+    background: var(--orange-light);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 20px;
+  }
+
+  .footer-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-nav-links a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-nav-links a:hover { color: #fff; }
+
+  .footer-social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-social-links a {
     display: flex;
     align-items: center;
     gap: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
     text-decoration: none;
-    color: var(--text);
+    transition: color 0.15s;
   }
 
-  .footer-logo-img {
-    width: 28px;
-    height: 28px;
-    border-radius: 7px;
-    display: block;
-    object-fit: cover;
+  .footer-social-links a:hover { color: #fff; }
+
+  .footer-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
   }
 
-  .footer-logo-text {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    gap: 16px;
   }
 
   .footer-copy {
     font-size: 13px;
-    color: var(--text-subtle);
+    color: rgba(255,255,255,0.25);
   }
-
-  .footer-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-  }
-
-  .footer-links a {
-    font-size: 13px;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--text); }
 
   /* BACK TO TOP */
   .back-to-top {
@@ -1097,7 +1164,8 @@
     .processo-steps { grid-template-columns: 1fr; gap: 32px; }
     .projetos-grid { grid-template-columns: 1fr; }
 
-    footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .footer-top { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
   }
 </style>
 </head>
@@ -1141,8 +1209,9 @@
 <!-- NAV -->
 <nav>
   <div class="nav-left">
-    <a href="#" class="nav-left-name">Studio Dotto</a>
-    <span class="nav-left-location">Brasil</span>
+    <a href="#">
+      <img src="assets/logotype/logo-symbol.svg" alt="Studio Dotto" class="nav-left-logo">
+    </a>
   </div>
 
   <div class="nav-center">
@@ -1207,7 +1276,7 @@
             <div class="sobre-foto-role">Brand Product Designer</div>
           </div>
           <div class="sobre-foto-icon">
-            <img src="logo.png" alt="Studio Dotto" style="width:36px;height:36px;border-radius:8px;opacity:0.85;">
+            <img src="assets/logotype/logo-symbol.svg" alt="Studio Dotto" class="sobre-foto-logo">
           </div>
         </div>
       </div>
@@ -1450,17 +1519,45 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <a href="#" class="footer-logo">
-      <img src="logo.png" alt="Studio Dotto" class="footer-logo-img">
-      <span class="footer-logo-text">Studio Dotto</span>
-    </a>
-    <ul class="footer-links">
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#projetos">Projetos</a></li>
-      <li><a href="#contato">Contato</a></li>
-      <li><a href="#faq">Dúvidas</a></li>
-    </ul>
-    <span class="footer-copy">© 2026. Todos os direitos reservados.</span>
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <img src="assets/logotype/logo-symbol.svg" alt="Studio Dotto">
+        </a>
+        <p class="footer-tagline">by Studio Dotto</p>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Navegação</p>
+        <ul class="footer-nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#faq">Dúvidas</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Social</p>
+        <div class="footer-social-links">
+          <a href="https://www.instagram.com/oalisonorsi/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.linkedin.com/in/oalisonalmeida/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Studio Dotto. Todos os direitos reservados.</span>
+    </div>
   </div>
 </footer>
 
