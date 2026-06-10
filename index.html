@@ -200,8 +200,6 @@
     grid-template-rows: 1fr auto;
     padding: 0 clamp(10px, 2.5vw, 24px) 24px;
     padding-top: 80px;
-    max-width: 1280px;
-    margin: 0 auto;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -329,8 +327,6 @@
     width: 100%;
     height: 1px;
     background: var(--border);
-    max-width: 1280px;
-    margin: 0 auto;
   }
 
   /* SOBRE */
@@ -774,8 +770,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1280px;
-    margin: 0 auto;
     width: 100%;
     flex-wrap: wrap;
     gap: 20px;
@@ -902,7 +896,7 @@
     flex-direction: column;
     padding: 24px;
     gap: 40px;
-    transform: translateX(100%);
+    transform: translateX(calc(100% + 1px));
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
