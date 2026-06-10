@@ -565,13 +565,31 @@
   }
 
 
-  .projeto-thumb {
+  .projeto-thumb-wrap {
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+
+  .projeto-thumb-wrap .projeto-thumb,
+  .projeto-thumb-wrap .projeto-thumb-hover {
     width: 100%;
     aspect-ratio: 16/10;
     object-fit: cover;
     display: block;
-    background: var(--bg3);
+    transition: opacity 0.4s ease;
   }
+
+  .projeto-thumb-hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  .projeto-card:hover .projeto-thumb-hover { opacity: 1; }
+  .projeto-card:hover .projeto-thumb-wrap .projeto-thumb { opacity: 0; }
+
+
 
   .projeto-thumb-fallback {
     width: 100%;
@@ -1222,7 +1240,10 @@
 
       <!-- Featured project -->
       <a href="https://mix-punch-91517840.figma.site/escritoriointeligente" target="_blank" class="projeto-card">
-        <img src="projects/cover-escritorio-inteligente.png" alt="Escritório Inteligente" class="projeto-thumb">
+        <div class="projeto-thumb-wrap">
+          <img src="projects/cover-escritorio-inteligente.png" alt="Escritório Inteligente" class="projeto-thumb">
+          <img src="projects/logo-reveal.gif" alt="" class="projeto-thumb-hover">
+        </div>
         <div class="projeto-body">
           <span class="projeto-tag">Branding · Identidade Visual</span>
           <div class="projeto-title">Escritório Inteligente</div>
