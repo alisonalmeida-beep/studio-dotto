@@ -185,6 +185,16 @@
     display: block;
   }
 
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+
+  @media (max-width: 768px) {
+    .section-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
   .section-text {
     font-size: clamp(16px, 2vw, 20px);
     color: var(--text-muted);
@@ -343,14 +353,24 @@
     </div>
   </div>
 
-  <!-- SOBRE O PROJETO -->
+  <!-- DESAFIO + OBJETIVO -->
   <div class="section reveal">
-    <span class="section-label">Sobre o projeto</span>
-    <p class="section-text">
-      O Escritório Inteligente nasceu de um propósito claro: <strong>transformar, capacitar e dar protagonismo à profissão contábil.</strong> Por meio de sua metodologia, consegue converter um grande volume de trabalho operacional em dados estratégicos para que os contadores possam interpretá-los.
-      <br><br>
-      O desafio era criar uma identidade visual que traduzisse essa transformação — moderna o suficiente para romper com o conservadorismo do setor, mas sólida o suficiente para transmitir confiança.
-    </p>
+    <div class="section-grid">
+      <div>
+        <span class="section-label">Desafio</span>
+        <p class="section-text">
+          Transformar a marca do Escritório Inteligente em uma marca moderna e poderosa, com uma estética que capture principalmente seu público-alvo.
+          <br><br>
+          O Escritório Inteligente nasceu de um propósito claro: transformar, capacitar e dar protagonismo à profissão contábil. Por meio de sua metodologia, consegue converter um grande volume de trabalho operacional em dados estratégicos para que os contadores possam interpretá-los.
+        </p>
+      </div>
+      <div>
+        <span class="section-label">Objetivo</span>
+        <p class="section-text">
+          Atualizar a identidade visual e verbal da marca para que seja consistente em sua comunicação e essência.
+        </p>
+      </div>
+    </div>
   </div>
 
   <!-- IMAGENS -->
