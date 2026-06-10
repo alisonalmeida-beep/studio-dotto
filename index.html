@@ -82,14 +82,17 @@
   .nav-center {
     display: flex;
     align-items: center;
-    background: var(--text);
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-radius: 100px;
     padding: 4px;
     gap: 2px;
+    border: 1px solid rgba(255,255,255,0.1);
   }
 
   .nav-center a {
-    color: rgba(245,243,239,0.55);
+    color: rgba(255,255,255,0.55);
     text-decoration: none;
     font-size: 13px;
     font-weight: 400;
@@ -99,14 +102,13 @@
     white-space: nowrap;
   }
 
-  .nav-center a:hover { color: rgba(245,243,239,0.9); }
+  .nav-center a:hover { color: rgba(255,255,255,0.9); }
 
   .nav-center a.active {
-    background: var(--bg);
-    color: var(--text);
+    background: rgba(255,255,255,0.95);
+    color: #1A1814;
     font-weight: 500;
-    border: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 0 1px 0 rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
   }
 
   .nav-right {
@@ -602,8 +604,33 @@
     opacity: 0;
   }
 
+  .projeto-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .projeto-thumb-overlay span {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 100px;
+    letter-spacing: 0.2px;
+  }
+
   .projeto-card:hover .projeto-thumb-hover { opacity: 1; }
   .projeto-card:hover .projeto-thumb-wrap .projeto-thumb { opacity: 0; }
+  .projeto-card:hover .projeto-thumb-overlay { opacity: 1; }
 
 
 
@@ -1300,6 +1327,7 @@
         <div class="projeto-thumb-wrap">
           <img src="projects/cover-escritorio-inteligente.png" alt="Escritório Inteligente" class="projeto-thumb">
           <img src="projects/logo-reveal.gif" alt="" class="projeto-thumb-hover">
+          <div class="projeto-thumb-overlay"><span>Ver projeto</span></div>
         </div>
         <div class="projeto-body">
           <div class="projeto-badges">
