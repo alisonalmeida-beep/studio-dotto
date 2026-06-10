@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Studio Dotto — Brand Product Designer">
+<title>Studio Dotto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #FF7B00;
+    --orange-light: #FF9A33;
+    --bg: #F5F3EF;
+    --bg2: #EDEAE4;
+    --bg3: #E2DED7;
+    --border: rgba(0,0,0,0.08);
+    --border-hover: rgba(0,0,0,0.16);
+    --text: #1A1814;
+    --text-muted: rgba(26,24,20,0.55);
+    --text-subtle: rgba(26,24,20,0.3);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(245,243,239,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .nav-logo-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: block;
+    object-fit: cover;
+  }
+
+  .nav-logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--orange);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nav-cta {
+    background: var(--orange);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 9px 20px;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+
+  .nav-cta:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+  .nav-questions {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .nav-questions:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(232,64,10,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(232,64,10,0.12);
+    border: 1px solid rgba(232,64,10,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--orange);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1.0;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    max-width: 900px;
+    margin-bottom: 24px;
+  }
+
+  .hero-title span { color: var(--orange); }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 14px 28px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); }
+
+  .hero-photo-wrap {
+    margin-top: 60px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--bg3);
+    display: block;
+  }
+
+  .hero-photo-fallback {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: var(--bg3);
+    border: 3px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    color: var(--orange);
+  }
+
+  .hero-badge {
+    position: absolute;
+    bottom: 8px;
+    right: -10px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  /* SECTION COMMON */
+  section {
+    padding: 100px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* SOBRE */
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+    margin-top: 40px;
+  }
+
+  .sobre-foto-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .sobre-foto-fallback {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(160deg, #d8d2cc 0%, #c4bab2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    font-weight: 700;
+    color: rgba(255,123,0,0.25);
+  }
+
+  .sobre-foto-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 24px;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .sobre-foto-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .sobre-foto-role {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 2px;
+  }
+
+  .sobre-foto-icon {
+    display: flex;
+    gap: 4px;
+    opacity: 0.6;
+  }
+
+  .sobre-foto-icon span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .sobre-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-top: 8px;
+  }
+
+  .sobre-bio {
+    font-size: 20px;
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .experience-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .experience-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--bg);
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+
+  .experience-item:hover {
+    border-color: var(--border-hover);
+    background: var(--bg2);
+  }
+
+  .exp-label {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  .exp-arrow {
+    font-size: 16px;
+    color: var(--text-subtle);
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .experience-item:hover .exp-arrow { color: var(--orange); transform: translateX(3px); }
+
+
+  /* PROCESSO */
+  .processo-wrap {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 64px;
+    margin-top: 0;
+  }
+
+  .processo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .processo-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .step-number {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    color: rgba(232,64,10,0.18);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .step-divider {
+    width: 1px;
+    background: var(--border);
+    align-self: stretch;
+  }
+
+  /* PROJETOS */
+  .projetos-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .projeto-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+    display: block;
+  }
+
+  .projeto-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+  }
+
+
+  .projeto-thumb {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+    background: var(--bg3);
+  }
+
+  .projeto-thumb-fallback {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, #e8e2da 0%, #ddd0c4 60%, #d4c0b0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .projeto-thumb-fallback::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(232,64,10,0.08) 0%, transparent 60%);
+  }
+
+  .projeto-thumb-fallback span {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(232,64,10,0.35);
+    position: relative;
+  }
+
+
+  .projeto-body {
+    padding: 24px;
+  }
+
+  .projeto-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+
+  .projeto-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+
+  .projeto-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .projeto-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--orange);
+  }
+
+  /* CONTATO */
+  .contato-wrap {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contato-wrap::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 200px;
+    background: radial-gradient(ellipse, rgba(232,64,10,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contato-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: -0.5px;
+    line-height: 1.05;
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .contato-title span { color: var(--orange); }
+
+  .contato-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--orange);
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 36px;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.15s;
+    position: relative;
+  }
+
+  .contato-cta:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  .contato-cta-arrow {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+
+  /* FAQ */
+  .faq-header {
+    margin-bottom: 48px;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'IBM Plex Sans', sans-serif;
+    gap: 24px;
+  }
+
+  .faq-trigger:hover { color: var(--orange); }
+
+  .faq-icon {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--text-muted);
+    transition: transform 0.3s, border-color 0.2s, color 0.2s;
+    line-height: 1;
+  }
+
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 400px;
+    padding-bottom: 24px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .footer-logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--orange);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: #fff;
+  }
+
+  .footer-logo-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: var(--text-subtle);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  /* MOBILE MENU */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: 0.2s;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links, .nav-questions { display: none; }
+    .nav-hamburger { display: flex; }
+
+    section { padding: 72px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-title { font-size: clamp(36px, 10vw, 64px); }
+
+    .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+
+    .processo-wrap { padding: 40px 24px; }
+    .processo-steps { grid-template-columns: 1fr; gap: 32px; }
+
+    .projetos-grid { grid-template-columns: 1fr; }
+    .projeto-card.featured { grid-template-columns: 1fr; }
+    .featured .projeto-thumb-fallback { min-height: 200px; height: 200px; }
+
+    .contato-wrap { padding: 48px 24px; }
+
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="Studio Dotto" class="nav-logo-img">
+    <span class="nav-logo-text">Studio Dotto</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="#faq" class="nav-questions">Dúvidas?</a>
+    <a href="https://calendly.com/alisonalmeidadsn/30min" target="_blank" class="nav-cta">Marcar reunião</a>
+    <button class="nav-hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Disponível para projetos</div>
+  <h1 class="hero-title">Brand &amp; Product<br><span>Designer</span></h1>
+  <p class="hero-sub">Designer com mais de 6 anos de experiência em branding e produtos digitais para startups.</p>
+  <div class="hero-actions">
+    <a href="#projetos" class="btn-primary">Ver projetos</a>
+    <a href="#contato" class="btn-ghost">Vamos conversar</a>
+  </div>
+
+</div>
+
+<div class="section-divider"></div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="reveal">
+    <span class="section-label">Sobre</span>
+    <div class="sobre-grid">
+
+      <!-- Foto com overlay -->
+      <div class="sobre-foto-wrap">
+        <div class="sobre-foto-fallback">AA</div>
+        <div class="sobre-foto-overlay">
+          <div>
+            <div class="sobre-foto-name">Alison Almeida, 25</div>
+            <div class="sobre-foto-role">Brand Product Designer</div>
+          </div>
+          <div class="sobre-foto-icon">
+            <span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio + experiências -->
+      <div class="sobre-content">
+        <p class="sobre-bio">
+          Designer com mais de 6 anos de experiência em branding e produtos digitais.<br><br>
+          Com um método que cuida da marca de forma estratégica, entregando um sistema visual que transmite confiança e aumenta a visibilidade do seu negócio por meio de design orientado a resultados.
+        </p>
+        <ul class="experience-list">
+          <li class="experience-item">
+            <span class="exp-label">Suflex [2023 - Momento]</span>
+            <span class="exp-arrow">→</span>
+          </li>
+          <li class="experience-item">
+            <span class="exp-label">Escandi [2022 - 2023]</span>
+            <span class="exp-arrow">→</span>
+          </li>
+          <li class="experience-item">
+            <span class="exp-label">Lunes [2021 - 2022]</span>
+            <span class="exp-arrow">→</span>
+          </li>
+          <li class="experience-item">
+            <span class="exp-label">Indoor Channel [2019 - 2021]</span>
+            <span class="exp-arrow">→</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROCESSO -->
+<section>
+  <div class="processo-wrap reveal">
+    <div class="processo-header">
+      <div>
+        <span class="section-label">Método</span>
+        <h2 class="section-title">Processo de criação</h2>
+      </div>
+    </div>
+    <div class="processo-steps">
+      <div>
+        <div class="step-number">01</div>
+        <div class="step-title">Descoberta</div>
+        <p class="step-desc">Analisamos o mercado em que sua marca está inserida, pesquisando tendências e oportunidades. Estudamos os concorrentes diretos e indiretos para entender suas estratégias visuais e analisamos o comportamento do seu público-alvo.</p>
+      </div>
+      <div>
+        <div class="step-number">02</div>
+        <div class="step-title">Desenvolvimento</div>
+        <p class="step-desc">Com as informações coletadas, desenvolvemos conceitos iniciais, sistema visual, paleta de cores, tipografia e elementos gráficos. Garantimos que o design seja versátil e aplicável em diversas mídias, refinando as opções conforme o feedback.</p>
+      </div>
+      <div>
+        <div class="step-number">03</div>
+        <div class="step-title">Apresentação</div>
+        <p class="step-desc">Apresentamos o sistema visual detalhadamente aos responsáveis pelo projeto, explicando as escolhas de design e como elas atendem aos objetivos da marca. Coletamos feedback, realizamos ajustes necessários e buscamos a aprovação final.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="reveal">
+    <div class="projetos-header">
+      <div>
+        <span class="section-label">Projetos</span>
+        <h2 class="section-title">Trabalhos selecionados</h2>
+      </div>
+    </div>
+    <div class="projetos-grid">
+
+      <!-- Featured project -->
+      <a href="https://mix-punch-91517840.figma.site/escritoriointeligente" target="_blank" class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>EI</span></div>
+        <div class="projeto-body">
+          <span class="projeto-tag">Branding · Identidade Visual</span>
+          <div class="projeto-title">Escritório Inteligente</div>
+          <p class="projeto-desc">O Escritório Inteligente nasceu de um propósito claro: transformar, capacitar e dar protagonismo à profissão contábil. Por meio de sua metodologia, consegue converter um grande volume de trabalho operacional em dados estratégicos para que os contadores possam interpretá-los.</p>
+          <span class="projeto-link">Ver projeto →</span>
+        </div>
+      </a>
+
+      <!-- Placeholder projects -->
+      <div class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>PJ</span></div>
+        <div class="projeto-body">
+          <span class="projeto-tag">Branding</span>
+          <div class="projeto-title">Project Name</div>
+          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
+        </div>
+      </div>
+
+      <div class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>PJ</span></div>
+        <div class="projeto-body">
+          <span class="projeto-tag">Produto Digital</span>
+          <div class="projeto-title">Project Name</div>
+          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
+        </div>
+      </div>
+
+      <div class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>PJ</span></div>
+        <div class="projeto-body">
+          <span class="projeto-tag">Identidade Visual</span>
+          <div class="projeto-title">Project Name</div>
+          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
+        </div>
+      </div>
+
+      <div class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>PJ</span></div>
+        <div class="projeto-body">
+          <span class="projeto-tag">Branding</span>
+          <div class="projeto-title">Project Name</div>
+          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="contato-wrap reveal">
+    <h2 class="contato-title">Tem um projeto<br>em mente?<br><span>Vamos conversar</span></h2>
+    <a href="https://calendly.com/alisonalmeidadsn/30min" target="_blank" class="contato-cta">
+      Marcar reunião
+      <span class="contato-cta-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="reveal">
+    <div class="faq-header">
+      <span class="section-label">Dúvidas frequentes</span>
+      <h2 class="section-title">Perguntas comuns</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          O que está incluso no sistema visual?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">O sistema visual inclui logotipo e suas variações, paleta de cores, tipografia, elementos gráficos de apoio, guia de aplicação e arquivos finais prontos para uso em diferentes mídias.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Vocês também criam materiais de aplicação da marca?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Sim! Além do sistema visual completo, oferecemos criação de materiais como apresentações, posts para redes sociais, papelaria e outros itens de aplicação da marca.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Qual é o prazo para desenvolver uma identidade visual?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">O prazo médio é de 3 a 5 semanas, dependendo da complexidade do projeto e da agilidade nos feedbacks. Um cronograma detalhado é definido no início do projeto.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Como funciona o processo de criação?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">O processo passa por três etapas: Descoberta (imersão e pesquisa), Desenvolvimento (conceitos e refinamento) e Apresentação (entrega e ajustes finais). Cada etapa tem marcos claros e momentos de feedback.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Quantas rodadas de ajuste estão inclusas?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Estão inclusas duas rodadas de ajuste após cada apresentação. Revisões além desse limite são cobradas separadamente, conforme acordado no briefing inicial.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Como os arquivos finais são entregues?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Os arquivos são entregues em formatos editáveis (AI, PDF) e de uso (PNG, SVG, JPG) via link de download organizado por categoria. Também é entregue um mini guia de uso da marca.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Tenho direito sobre os arquivos e a marca criada?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Sim. Após a quitação total do projeto, todos os direitos de uso da marca criada são transferidos integralmente ao cliente, incluindo arquivos editáveis e fontes utilizadas.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Como consigo um orçamento?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Basta marcar uma reunião de 30 minutos pelo link de agendamento. Nessa conversa, entendo o seu projeto e envio uma proposta personalizada em até 48 horas.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">
+    <img src="logo.png" alt="Studio Dotto" class="nav-logo-img">
+    <span class="footer-logo-text">Studio Dotto</span>
+  </a>
+  <ul class="footer-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="#faq">Dúvidas</a></li>
+  </ul>
+  <span class="footer-copy">© 2026. Todos os direitos reservados.</span>
+</footer>
+
+<script>
+  function toggleFaq(trigger) {
+    const item = trigger.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
