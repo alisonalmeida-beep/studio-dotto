@@ -999,62 +999,71 @@
   }
 
   /* MOBILE MENU OVERLAY */
-  .mobile-menu-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(26,24,20,0.4);
-    z-index: 199;
-    backdrop-filter: blur(2px);
-  }
-
   .mobile-menu {
     position: fixed;
-    top: 0; right: 0;
-    width: min(320px, 85vw);
+    inset: 0;
+    width: 100vw;
     height: 100dvh;
     background: var(--bg);
-    border-left: 1px solid var(--border);
     z-index: 200;
     display: flex;
     flex-direction: column;
-    padding: 24px;
-    gap: 40px;
-    transform: translateX(calc(100% + 1px));
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
   }
 
   .mobile-menu.open {
-    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
   }
 
-  .mobile-menu-backdrop.open {
-    display: block;
+  .mobile-menu-zone {
+    padding: 0 24px;
   }
 
-  .mobile-menu-header {
+  .mobile-menu-zone + .mobile-menu-zone {
+    border-top: 1px solid var(--border);
+  }
+
+  /* Zona 1 — botão fechar */
+  .mobile-menu-zone-close {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   .mobile-menu-close {
     background: var(--bg2);
-    border: 1.5px solid rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.12);
     color: var(--text);
-    font-size: 16px;
-    width: 36px;
-    height: 36px;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s, border-color 0.2s;
+    transition: background 0.2s;
     flex-shrink: 0;
+    line-height: 1;
   }
 
-  .mobile-menu-close:hover { background: var(--bg3); border-color: rgba(0,0,0,0.25); }
+  .mobile-menu-close:hover { background: var(--bg3); }
+
+  /* Zona 2 — navegação */
+  .mobile-menu-zone-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
 
   .mobile-menu-links {
     position: static;
@@ -1064,8 +1073,6 @@
     align-items: stretch;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    flex: 1;
     padding: 0;
     z-index: auto;
   }
@@ -1073,35 +1080,44 @@
   .mobile-menu-links a {
     text-decoration: none;
     color: var(--text-muted);
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    transition: color 0.2s, padding-left 0.2s;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    padding: 10px 0;
+    transition: color 0.15s;
     line-height: 1.2;
   }
 
-  .mobile-menu-links a:first-child { border-top: 1px solid var(--border); }
-  .mobile-menu-links a:hover { color: var(--text); padding-left: 8px; }
+  .mobile-menu-links a:hover { color: var(--text); }
 
-  .mobile-menu-footer {
+  /* Zona 3 — rodapé social */
+  .mobile-menu-zone-footer {
+    padding-top: 24px;
+    padding-bottom: 32px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+  }
+
+  .mobile-menu-social-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
   }
 
   .mobile-menu-socials {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
 
   .mobile-menu-socials a {
     text-decoration: none;
     color: var(--text-muted);
     font-size: 13px;
-    transition: color 0.2s;
+    transition: color 0.15s;
   }
 
   .mobile-menu-socials a:hover { color: var(--text); }
@@ -1142,28 +1158,28 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-header">
-    <div class="nav-left">
-      <span class="nav-left-name">Studio Dotto</span>
-      <span class="nav-left-location">Brasil</span>
-    </div>
+  <!-- Zona 1: fechar -->
+  <div class="mobile-menu-zone mobile-menu-zone-close">
     <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Fechar">✕</button>
   </div>
-  <nav class="mobile-menu-links">
-    <a href="#" onclick="closeMobileMenu()">Home</a>
-    <a href="#sobre" onclick="closeMobileMenu()">Sobre</a>
-    <a href="#projetos" onclick="closeMobileMenu()">Projetos</a>
-    <a href="#contato" onclick="closeMobileMenu()">Contato</a>
-  </nav>
-  <div class="mobile-menu-footer">
-    <span class="nav-right-label">Social</span>
+  <!-- Zona 2: navegação -->
+  <div class="mobile-menu-zone mobile-menu-zone-nav">
+    <nav class="mobile-menu-links">
+      <a href="#" onclick="closeMobileMenu()">Home</a>
+      <a href="#sobre" onclick="closeMobileMenu()">Sobre</a>
+      <a href="#projetos" onclick="closeMobileMenu()">Projetos</a>
+      <a href="#contato" onclick="closeMobileMenu()">Contato</a>
+    </nav>
+  </div>
+  <!-- Zona 3: social -->
+  <div class="mobile-menu-zone mobile-menu-zone-footer">
+    <span class="mobile-menu-social-label">Social</span>
     <div class="mobile-menu-socials">
-      <a href="https://www.linkedin.com/in/oalisonalmeida/" target="_blank">LinkedIn</a>
       <a href="https://www.instagram.com/oalisonorsi/" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/in/oalisonalmeida/" target="_blank">LinkedIn</a>
     </div>
   </div>
 </div>
-<div class="mobile-menu-backdrop" id="menuBackdrop" onclick="closeMobileMenu()"></div>
 
 <!-- NAV -->
 <nav>
@@ -1514,13 +1530,11 @@
 <script>
   function openMobileMenu() {
     document.getElementById('mobileMenu').classList.add('open');
-    document.getElementById('menuBackdrop').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMobileMenu() {
     document.getElementById('mobileMenu').classList.remove('open');
-    document.getElementById('menuBackdrop').classList.remove('open');
     document.body.style.overflow = '';
   }
 
