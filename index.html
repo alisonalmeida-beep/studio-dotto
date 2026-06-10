@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Escritório Inteligente — Identidade Visual por Studio Dotto">
-<title>Escritório Inteligente — Studio Dotto</title>
+<meta name="description" content="Studio Dotto — Brand Product Designer">
+<title>Studio Dotto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -22,6 +22,8 @@
     --text: #1A1814;
     --text-muted: rgba(26,24,20,0.55);
     --text-subtle: rgba(26,24,20,0.3);
+    --radius: 12px;
+    --radius-sm: 8px;
   }
 
   html { scroll-behavior: smooth; }
@@ -40,26 +42,114 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
     padding: 20px clamp(10px, 2.5vw, 24px);
     background: rgba(245,243,239,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
 
-  .nav-back {
+  .nav-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .nav-left-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    line-height: 1.2;
+  }
+
+  .nav-left-location {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .nav-logo-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: block;
+    object-fit: cover;
+  }
+
+  .nav-center {
+    display: flex;
+    align-items: center;
+    background: var(--text);
+    border-radius: 100px;
+    padding: 4px;
+    gap: 2px;
+  }
+
+  .nav-center a {
+    color: rgba(245,243,239,0.55);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 6px 16px;
+    border-radius: 100px;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-center a:hover { color: rgba(245,243,239,0.9); }
+
+  .nav-center a.active {
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    position: relative;
+    min-width: 180px;
+  }
+
+  .nav-right-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-right: 4px;
+  }
+
+  .nav-social {
+    color: var(--text-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    padding: 4px;
+  }
+
+  .nav-socials {
     display: flex;
     align-items: center;
     gap: 8px;
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 13px;
-    transition: color 0.2s;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+    position: absolute;
+    right: 0;
   }
 
-  .nav-back:hover { color: var(--text); }
+  .nav-socials.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+  }
+
+  .nav-social:hover { color: var(--text); }
 
   .nav-cta {
     background: var(--orange);
@@ -70,210 +160,871 @@
     padding: 8px 18px;
     border-radius: 100px;
     white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    transition: background 0.2s;
+  }
+
+  .nav-cta.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .nav-cta:hover { background: var(--orange-light); }
 
-  /* VIDEO HERO */
-  .video-hero {
-    width: 100%;
-    padding: 80px clamp(10px, 2.5vw, 24px) 0;
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
   }
 
-  .video-hero video {
-    width: 100%;
+  .nav-hamburger span {
     display: block;
-    border-radius: 16px;
-    background: #000;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: 0.2s;
   }
 
-  /* CONTENT */
-  .content {
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+    padding-bottom: 24px;
+  }
+
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(10px, 2.5vw, 24px);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    flex: 1;
+    width: 100%;
+  }
+
+  .hero-body {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    align-items: flex-end;
+    padding-bottom: 40px;
+    gap: 40px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding-bottom: 8px;
+  }
+
+  .hero-left-bio {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 180px;
+  }
+
+  .hero-left-meta {
+    font-size: 11px;
+    color: var(--text-subtle);
+  }
+
+  .hero-left-meta span {
+    color: var(--text-muted);
+  }
+
+  .hero-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(48px, 6.5vw, 96px);
+    line-height: 1.0;
+    letter-spacing: -1px;
+    color: var(--text);
+  }
+
+  .hero-title span { color: var(--orange); }
+
+  .hero-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .hero-bottom-left {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    background: transparent;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-primary:hover { border-color: var(--border-hover); }
+
+  .btn-ghost {
+    background: var(--text);
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 100px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-ghost:hover { opacity: 0.8; }
+
+  /* SECTION COMMON */
+  section {
+    padding: clamp(30px, 4vw, 50px) 0;
+    width: 100%;
+  }
+
+  .section-inner {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 clamp(10px, 2.5vw, 24px);
   }
-
-  /* PROJECT HEADER */
-  .project-header {
-    padding: clamp(48px, 6vw, 80px) 0 clamp(32px, 4vw, 48px);
-    border-bottom: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: end;
-  }
-
-  .project-tag {
+  .section-label {
     display: inline-block;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--orange);
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
 
-  .project-title {
-    font-size: clamp(36px, 5vw, 64px);
+  .section-title {
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 700;
-    line-height: 1.0;
-    letter-spacing: -0.5px;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.3px;
     color: var(--text);
   }
 
-  .project-meta {
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* SOBRE */
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+    margin-top: 40px;
+  }
+
+  .sobre-foto-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .sobre-foto-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .sobre-foto-fallback {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(160deg, #d8d2cc 0%, #c4bab2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    font-weight: 700;
+    color: rgba(255,123,0,0.25);
+  }
+
+  .sobre-foto-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .sobre-foto-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .sobre-foto-role {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 2px;
+  }
+
+  .sobre-foto-icon {
+    display: flex;
+    gap: 4px;
+    opacity: 0.6;
+  }
+
+  .sobre-foto-icon span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .sobre-content {
     display: flex;
     flex-direction: column;
+    gap: 40px;
+    padding-top: 8px;
+  }
+
+  .sobre-bio {
+    font-size: 20px;
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .experience-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .experience-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--bg);
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+
+  .experience-item:hover {
+    border-color: var(--border-hover);
+    background: var(--bg2);
+  }
+
+  .exp-label {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  .exp-arrow {
+    font-size: 16px;
+    color: var(--text-subtle);
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .experience-item:hover .exp-arrow { color: var(--orange); transform: translateX(3px); }
+
+
+  /* PROCESSO */
+  .processo-wrap {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: clamp(32px, 5vw, 64px);
+    margin-top: 0;
+  }
+
+  .processo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
     gap: 24px;
   }
 
-  .meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  .processo-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
   }
 
-  .meta-label {
+  .step-number {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    color: rgba(232,64,10,0.18);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .step-divider {
+    width: 1px;
+    background: var(--border);
+    align-self: stretch;
+  }
+
+  /* PROJETOS */
+  .projetos-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .projeto-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+    display: block;
+  }
+
+  .projeto-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+  }
+
+
+  .projeto-thumb-wrap {
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+
+  .projeto-thumb-wrap .projeto-thumb,
+  .projeto-thumb-wrap .projeto-thumb-hover {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.4s ease;
+  }
+
+  .projeto-thumb-hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  .projeto-card:hover .projeto-thumb-hover { opacity: 1; }
+  .projeto-card:hover .projeto-thumb-wrap .projeto-thumb { opacity: 0; }
+
+
+
+  .projeto-thumb-fallback {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, #e8e2da 0%, #ddd0c4 60%, #d4c0b0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .projeto-thumb-fallback::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(232,64,10,0.08) 0%, transparent 60%);
+  }
+
+  .projeto-thumb-fallback span {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(232,64,10,0.35);
+    position: relative;
+  }
+
+
+  .projeto-body {
+    padding: 24px;
+  }
+
+  .projeto-tag {
+    display: inline-block;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--text-subtle);
-  }
-
-  .meta-value {
-    font-size: 14px;
-    color: var(--text);
-    font-weight: 400;
-  }
-
-  /* SECTIONS */
-  .section {
-    padding: clamp(48px, 6vw, 80px) 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .section:last-child { border-bottom: none; }
-
-  .section-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
     color: var(--orange);
-    margin-bottom: 24px;
-    display: block;
+    margin-bottom: 10px;
   }
 
-  .section-text {
-    font-size: clamp(16px, 2vw, 20px);
+  .projeto-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+
+  .projeto-desc {
+    font-size: 14px;
     color: var(--text-muted);
-    line-height: 1.8;
-    max-width: 680px;
+    line-height: 1.6;
   }
 
-  .section-text strong {
-    color: var(--text);
+  .projeto-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    font-size: 13px;
     font-weight: 500;
+    color: var(--orange);
   }
 
-  /* IMAGE GRID */
-  .image-grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 40px;
-  }
-
-  .image-grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 40px;
-  }
-
-  .image-full {
-    margin-top: 40px;
-  }
-
-  .project-img {
-    width: 100%;
-    display: block;
-    border-radius: 16px;
-    background: var(--bg3);
-  }
-
-  .img-placeholder {
-    width: 100%;
-    aspect-ratio: 16/10;
+  /* CONTATO */
+  .contato-wrap {
     background: var(--bg2);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 24px;
+    padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 80px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contato-wrap::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 200px;
+    background: radial-gradient(ellipse, rgba(232,64,10,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contato-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: -0.5px;
+    line-height: 1.05;
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .contato-title span { color: var(--orange); }
+
+  .contato-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange);
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 36px;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.15s;
+    position: relative;
+  }
+
+  .contato-cta:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  .contato-cta-arrow {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-subtle);
   }
 
-  .img-placeholder.tall { aspect-ratio: 3/4; }
-  .img-placeholder.square { aspect-ratio: 1/1; }
+  /* FAQ */
+  .faq-header {
+    margin-bottom: 24px;
+  }
 
-  /* NEXT PROJECT */
-  .next-project {
-    padding: clamp(48px, 6vw, 80px) 0;
+  .faq-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg);
+    transition: border-color 0.2s;
+  }
+
+  .faq-item:hover { border-color: var(--border-hover); }
+
+  .faq-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .next-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-subtle);
-    margin-bottom: 8px;
-  }
-
-  .next-title {
-    font-size: 24px;
-    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
     color: var(--text);
-    letter-spacing: -0.3px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'IBM Plex Sans', sans-serif;
+    gap: 16px;
   }
 
-  .next-arrow {
-    width: 48px;
-    height: 48px;
+  .faq-trigger:hover { color: var(--text); }
+
+  .faq-icon {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
     border-radius: 50%;
     border: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 18px;
     color: var(--text-muted);
-    text-decoration: none;
-    transition: border-color 0.2s, background 0.2s, color 0.2s;
-    flex-shrink: 0;
+    transition: transform 0.3s, border-color 0.2s, color 0.2s;
+    line-height: 1;
   }
 
-  .next-arrow:hover {
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
     border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    padding: 0 24px;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+    padding: 0 24px 20px;
+  }
+
+
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    width: 100%;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(10px, 2.5vw, 24px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .footer-logo-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    display: block;
+    object-fit: cover;
+  }
+
+  .footer-logo-mark {
+    width: 28px;
+    height: 28px;
     background: var(--orange);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
     color: #fff;
   }
 
-  /* REVEAL */
+  .footer-logo-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: var(--text-subtle);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  /* BACK TO TOP */
+  .back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 99;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .back-to-top:hover { background: var(--orange); color: #fff; }
+
+  /* MOBILE MENU */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: 0.2s;
+  }
+
+  /* MOBILE MENU OVERLAY */
+  .mobile-menu-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,24,20,0.4);
+    z-index: 199;
+    backdrop-filter: blur(2px);
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0; right: 0;
+    width: min(320px, 85vw);
+    height: 100dvh;
+    background: var(--bg);
+    border-left: 1px solid var(--border);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 40px;
+    transform: translateX(calc(100% + 1px));
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+
+  .mobile-menu-backdrop.open {
+    display: block;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .mobile-menu-close {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .mobile-menu-close:hover { color: var(--text); border-color: var(--border-hover); }
+
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .mobile-menu-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, padding-left 0.2s;
+    line-height: 1.2;
+  }
+
+  .mobile-menu-links a:first-child { border-top: 1px solid var(--border); }
+  .mobile-menu-links a:hover { color: var(--text); padding-left: 8px; }
+
+  .mobile-menu-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mobile-menu-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-menu-socials a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .mobile-menu-socials a:hover { color: var(--text); }
+
+
   .reveal {
     opacity: 0;
     transform: translateY(20px);
@@ -286,98 +1037,459 @@
   }
 
   /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .project-header { grid-template-columns: 1fr; gap: 32px; }
-    .image-grid-2 { grid-template-columns: 1fr; }
-    .image-grid-3 { grid-template-columns: 1fr; }
-    .next-project { flex-direction: column; align-items: flex-start; }
+  @media (max-width: 900px) {
+    nav { grid-template-columns: 1fr auto; padding: 16px 20px; }
+    .nav-center { display: none; }
+    .nav-right-label, .nav-social { display: none; }
+    .nav-hamburger { display: flex; }
+
+    .hero { padding: 80px 20px 32px; }
+    .hero-body { grid-template-columns: 1fr; gap: 32px; align-items: flex-start; padding-top: 40px; }
+    .hero-left { gap: 24px; }
+    .hero-title { font-size: clamp(40px, 11vw, 72px); }
+
+    .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+    .processo-steps { grid-template-columns: 1fr; gap: 32px; }
+    .projetos-grid { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; align-items: flex-start; gap: 16px; }
   }
 </style>
 </head>
 <body>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <div class="nav-left">
+      <span class="nav-left-name">Studio Dotto</span>
+      <span class="nav-left-location">Juazeiro do Norte, Brasil</span>
+    </div>
+    <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Fechar">✕</button>
+  </div>
+  <nav class="mobile-menu-links">
+    <a href="#" onclick="closeMobileMenu()">Home</a>
+    <a href="#sobre" onclick="closeMobileMenu()">Sobre</a>
+    <a href="#projetos" onclick="closeMobileMenu()">Projetos</a>
+    <a href="#contato" onclick="closeMobileMenu()">Contato</a>
+  </nav>
+  <div class="mobile-menu-footer">
+    <span class="nav-right-label">Social</span>
+    <div class="mobile-menu-socials">
+      <a href="https://www.behance.net/" target="_blank">Behance</a>
+      <a href="https://dribbble.com/" target="_blank">Dribbble</a>
+      <a href="https://www.linkedin.com/in/alisonalmeidadsn/" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/studiodotto/" target="_blank">Instagram</a>
+    </div>
+  </div>
+</div>
+<div class="mobile-menu-backdrop" id="menuBackdrop" onclick="closeMobileMenu()"></div>
+
 <!-- NAV -->
 <nav>
-  <a href="../index.html" class="nav-back">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-    Voltar
-  </a>
-  <a href="https://calendly.com/alisonalmeidadsn/30min" target="_blank" class="nav-cta">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-    Marcar reunião
-  </a>
+  <div class="nav-left">
+    <a href="#" class="nav-left-name">Studio Dotto</a>
+    <span class="nav-left-location">Juazeiro do Norte, Brasil</span>
+  </div>
+
+  <div class="nav-center">
+    <a href="#" class="active">Home</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#contato">Contato</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="nav-socials" id="navSocials">
+      <a href="https://www.instagram.com/studiodotto/" target="_blank" class="nav-social" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/alisonalmeidadsn/" target="_blank" class="nav-social" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+    <a href="https://calendly.com/alisonalmeidadsn/30min" target="_blank" class="nav-cta" id="navCta">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+      Marcar reunião
+    </a>
+    <button class="nav-hamburger" aria-label="Menu" onclick="openMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-<!-- VIDEO HERO -->
-<div class="video-hero">
-  <video autoplay loop muted playsinline disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback">
-    <source src="motion-board-escritorio-inteligente.mp4" type="video/mp4">
-  </video>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+  <div class="hero-body">
+    <div class="hero-left">
+      <p class="hero-left-bio">Mais de 6 anos criando marcas e produtos digitais para startups. Design com método, entregue com intenção.</p>
+      <p class="hero-left-meta">Atualizado em <span>06 · 2026</span></p>
+    </div>
+    <h1 class="hero-title">Brand &amp; Product<br>Designer<br>baseado no<br><span>Brasil</span></h1>
+  </div>
+  <div class="hero-bottom">
+    <span class="hero-bottom-left">Disponível para novos projetos</span>
+    <div class="hero-actions">
+      <a href="#projetos" class="btn-primary">Ver projetos</a>
+      <a href="#contato" class="btn-ghost">Vamos conversar</a>
+    </div>
+  </div>
+  </div>
 </div>
 
-<!-- PROJECT HEADER -->
-<div class="content">
-  <div class="project-header reveal">
-    <div>
-      <span class="project-tag">Branding · Identidade Visual</span>
-      <h1 class="project-title">Escritório<br>Inteligente</h1>
+<div class="section-divider"></div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="section-inner">
+  <div class="reveal">
+    <span class="section-label">Sobre</span>
+    <div class="sobre-grid">
+
+      <!-- Foto com overlay -->
+      <div class="sobre-foto-wrap">
+        <img src="pic_portfolio_about_me.jpg" alt="Alison Almeida" class="sobre-foto-img">
+        <div class="sobre-foto-overlay">
+          <div>
+            <div class="sobre-foto-name">Alison Almeida, 25</div>
+            <div class="sobre-foto-role">Brand Product Designer</div>
+          </div>
+          <div class="sobre-foto-icon">
+            <img src="logo.png" alt="Studio Dotto" style="width:36px;height:36px;border-radius:8px;opacity:0.85;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio + experiências -->
+      <div class="sobre-content">
+        <p class="sobre-bio">
+          Designer com mais de 6 anos de experiência em branding e produtos digitais.<br><br>
+          Com um método que cuida da marca de forma estratégica, entregando um sistema visual que transmite confiança e aumenta a visibilidade do seu negócio por meio de design orientado a resultados.
+        </p>
+        <ul class="experience-list">
+          <li class="experience-item">
+            <span class="exp-label">Suflex [2023 - Momento]</span>
+            <span class="exp-arrow">→</span>
+          </li>
+          <li class="experience-item">
+            <span class="exp-label">Escandi [2022 - 2023]</span>
+            <span class="exp-arrow">→</span>
+          </li>
+          <li class="experience-item">
+            <span class="exp-label">Lunes [2021 - 2022]</span>
+            <span class="exp-arrow">→</span>
+          </li>
+          <li class="experience-item">
+            <span class="exp-label">Indoor Channel [2019 - 2021]</span>
+            <span class="exp-arrow">→</span>
+          </li>
+        </ul>
+      </div>
+
     </div>
-    <div class="project-meta">
-      <div class="meta-item">
-        <span class="meta-label">Ano</span>
-        <span class="meta-value">2024</span>
+  </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROCESSO -->
+<section>
+  <div class="section-inner">
+  <div class="processo-wrap reveal">
+    <div class="processo-header">
+      <div>
+        <span class="section-label">Método</span>
+        <h2 class="section-title">Processo de criação</h2>
       </div>
-      <div class="meta-item">
-        <span class="meta-label">Serviços</span>
-        <span class="meta-value">Identidade Visual, Sistema de Marca, Brandbook</span>
+    </div>
+    <div class="processo-steps">
+      <div>
+        <div class="step-number">01</div>
+        <div class="step-title">Descoberta</div>
+        <p class="step-desc">Analisamos o mercado em que sua marca está inserida, pesquisando tendências e oportunidades. Estudamos os concorrentes diretos e indiretos para entender suas estratégias visuais e analisamos o comportamento do seu público-alvo.</p>
       </div>
-      <div class="meta-item">
-        <span class="meta-label">Setor</span>
-        <span class="meta-value">Contabilidade · Tecnologia</span>
+      <div>
+        <div class="step-number">02</div>
+        <div class="step-title">Desenvolvimento</div>
+        <p class="step-desc">Com as informações coletadas, desenvolvemos conceitos iniciais, sistema visual, paleta de cores, tipografia e elementos gráficos. Garantimos que o design seja versátil e aplicável em diversas mídias, refinando as opções conforme o feedback.</p>
+      </div>
+      <div>
+        <div class="step-number">03</div>
+        <div class="step-title">Apresentação</div>
+        <p class="step-desc">Apresentamos o sistema visual detalhadamente aos responsáveis pelo projeto, explicando as escolhas de design e como elas atendem aos objetivos da marca. Coletamos feedback, realizamos ajustes necessários e buscamos a aprovação final.</p>
       </div>
     </div>
   </div>
-
-  <!-- SOBRE O PROJETO -->
-  <div class="section reveal">
-    <span class="section-label">Sobre o projeto</span>
-    <p class="section-text">
-      O Escritório Inteligente nasceu de um propósito claro: <strong>transformar, capacitar e dar protagonismo à profissão contábil.</strong> Por meio de sua metodologia, consegue converter um grande volume de trabalho operacional em dados estratégicos para que os contadores possam interpretá-los.
-      <br><br>
-      O desafio era criar uma identidade visual que traduzisse essa transformação — moderna o suficiente para romper com o conservadorismo do setor, mas sólida o suficiente para transmitir confiança.
-    </p>
   </div>
+</section>
 
-  <!-- IMAGENS -->
-  <div class="section reveal">
-    <span class="section-label">Visual</span>
-    <div class="image-full">
-      <img src="cover-escritorio-inteligente.png" alt="Escritório Inteligente Cover" class="project-img">
+<div class="section-divider"></div>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="section-inner">
+  <div class="reveal">
+    <div class="projetos-header">
+      <div>
+        <span class="section-label">Projetos</span>
+      </div>
     </div>
-    <div class="image-grid-2">
-      <div class="img-placeholder">Imagem 01</div>
-      <div class="img-placeholder">Imagem 02</div>
-    </div>
-    <div class="image-grid-3">
-      <div class="img-placeholder square">Imagem 03</div>
-      <div class="img-placeholder square">Imagem 04</div>
-      <div class="img-placeholder square">Imagem 05</div>
+    <div class="projetos-grid">
+
+      <!-- Featured project -->
+      <a href="projects/escritorio-inteligente.html" class="projeto-card">
+        <div class="projeto-thumb-wrap">
+          <img src="projects/cover-escritorio-inteligente.png" alt="Escritório Inteligente" class="projeto-thumb">
+          <img src="projects/logo-reveal.gif" alt="" class="projeto-thumb-hover">
+        </div>
+        <div class="projeto-body">
+          <span class="projeto-tag">Branding · Identidade Visual</span>
+          <div class="projeto-title">Escritório Inteligente</div>
+          <p class="projeto-desc">O Escritório Inteligente nasceu de um propósito claro: transformar, capacitar e dar protagonismo à profissão contábil. Por meio de sua metodologia, consegue converter um grande volume de trabalho operacional em dados estratégicos para que os contadores possam interpretá-los.</p>
+          <span class="projeto-link">Ver projeto →</span>
+        </div>
+      </a>
+
+      <!-- Placeholder projects -->
+      <div class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>PJ</span></div>
+        <div class="projeto-body">
+          <span class="projeto-tag">Branding</span>
+          <div class="projeto-title">Project Name</div>
+          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
+        </div>
+      </div>
+
+      <div class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>PJ</span></div>
+        <div class="projeto-body">
+          <span class="projeto-tag">Produto Digital</span>
+          <div class="projeto-title">Project Name</div>
+          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
+        </div>
+      </div>
+
+      <div class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>PJ</span></div>
+        <div class="projeto-body">
+          <span class="projeto-tag">Identidade Visual</span>
+          <div class="projeto-title">Project Name</div>
+          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
+        </div>
+      </div>
+
+      <div class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>PJ</span></div>
+        <div class="projeto-body">
+          <span class="projeto-tag">Branding</span>
+          <div class="projeto-title">Project Name</div>
+          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
+        </div>
+      </div>
+
     </div>
   </div>
+  </div>
+</section>
 
-  <!-- NEXT PROJECT -->
-  <div class="next-project reveal">
-    <div>
-      <div class="next-label">Próximo projeto</div>
-      <div class="next-title">Em breve</div>
-    </div>
-    <a href="../index.html#projetos" class="next-arrow">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+<div class="section-divider"></div>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-inner">
+  <div class="contato-wrap reveal">
+    <h2 class="contato-title">Tem um projeto<br>em mente?<br><span>Vamos conversar</span></h2>
+    <a href="https://calendly.com/alisonalmeidadsn/30min" target="_blank" class="contato-cta">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+      Marcar reunião
     </a>
   </div>
-</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+  <div class="reveal">
+    <div class="faq-header">
+      <span class="section-label">Dúvidas frequentes</span>
+    </div>
+    <div class="faq-grid">
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          O que está incluso no sistema visual?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">O sistema visual inclui logotipo e suas variações, paleta de cores, tipografia, elementos gráficos de apoio, guia de aplicação e arquivos finais prontos para uso em diferentes mídias.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Vocês também criam materiais de aplicação da marca?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Sim! Além do sistema visual completo, oferecemos criação de materiais como apresentações, posts para redes sociais, papelaria e outros itens de aplicação da marca.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Qual é o prazo para desenvolver uma identidade visual?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">O prazo médio é de 3 a 5 semanas, dependendo da complexidade do projeto e da agilidade nos feedbacks. Um cronograma detalhado é definido no início do projeto.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Como funciona o processo de criação?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">O processo passa por três etapas: Descoberta (imersão e pesquisa), Desenvolvimento (conceitos e refinamento) e Apresentação (entrega e ajustes finais). Cada etapa tem marcos claros e momentos de feedback.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Quantas rodadas de ajuste estão inclusas?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Estão inclusas duas rodadas de ajuste após cada apresentação. Revisões além desse limite são cobradas separadamente, conforme acordado no briefing inicial.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Como os arquivos finais são entregues?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Os arquivos são entregues em formatos editáveis (AI, PDF) e de uso (PNG, SVG, JPG) via link de download organizado por categoria. Também é entregue um mini guia de uso da marca.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Tenho direito sobre os arquivos e a marca criada?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Sim. Após a quitação total do projeto, todos os direitos de uso da marca criada são transferidos integralmente ao cliente, incluindo arquivos editáveis e fontes utilizadas.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Como consigo um orçamento?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Basta marcar uma reunião de 30 minutos pelo link de agendamento. Nessa conversa, entendo o seu projeto e envio uma proposta personalizada em até 48 horas.</div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+  <a href="#" class="footer-logo">
+    <img src="logo.png" alt="Studio Dotto" class="footer-logo-img">
+    <span class="footer-logo-text">Studio Dotto</span>
+  </a>
+  <ul class="footer-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="#faq">Dúvidas</a></li>
+  </ul>
+  <span class="footer-copy">© 2026. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
 
 <script>
+  function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.getElementById('menuBackdrop').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('menuBackdrop').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  const navCta = document.getElementById('navCta');
+  const navSocials = document.getElementById('navSocials');
+  const heroEl = document.querySelector('.hero');
+  const backToTop = document.getElementById('backToTop');
+
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (navCta) navCta.classList.remove('visible');
+        if (navSocials) navSocials.classList.remove('hidden');
+        if (backToTop) backToTop.classList.remove('visible');
+      } else {
+        if (navCta) navCta.classList.add('visible');
+        if (navSocials) navSocials.classList.add('hidden');
+        if (backToTop) backToTop.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  if (heroEl) heroObserver.observe(heroEl);
+
+  // Nav active state on click
+  const navLinks = document.querySelectorAll('.nav-center a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  // Nav active state on scroll
+  const sections = [
+    { id: 'home', el: document.querySelector('.hero') },
+    { id: 'sobre', el: document.getElementById('sobre') },
+    { id: 'projetos', el: document.getElementById('projetos') },
+    { id: 'contato', el: document.getElementById('contato') },
+  ];
+
+  const navMap = {
+    'home': document.querySelector('.nav-center a[href="#"]'),
+    'sobre': document.querySelector('.nav-center a[href="#sobre"]'),
+    'projetos': document.querySelector('.nav-center a[href="#projetos"]'),
+    'contato': document.querySelector('.nav-center a[href="#contato"]'),
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const matched = sections.find(s => s.el === entry.target);
+        if (matched) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          if (navMap[matched.id]) navMap[matched.id].classList.add('active');
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => { if (s.el) sectionObserver.observe(s.el); });
+
+  function toggleFaq(trigger) {
+    const item = trigger.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -389,5 +1501,6 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
