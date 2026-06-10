@@ -499,41 +499,31 @@
 
   /* PROCESSO */
   .processo-wrap {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: clamp(32px, 5vw, 64px);
     margin-top: 0;
   }
 
   .processo-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 56px;
-    flex-wrap: wrap;
-    gap: 24px;
+    margin-bottom: 48px;
   }
 
   .processo-steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    gap: 48px;
   }
 
-  .step-number {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 48px;
-    color: rgba(232,64,10,0.18);
-    line-height: 1;
-    margin-bottom: 16px;
+  .step-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 24px;
+    color: var(--text);
+    opacity: 0.7;
   }
 
   .step-title {
     font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 17px;
     margin-bottom: 12px;
     color: var(--text);
   }
@@ -736,6 +726,7 @@
     justify-content: space-between;
     gap: 40px;
     min-height: 220px;
+    transition: background-image 0.1s;
   }
 
   .contato-icon {
@@ -1281,24 +1272,34 @@
   <div class="section-inner">
   <div class="processo-wrap reveal">
     <div class="processo-header">
-      <div>
-        <span class="section-label">Método</span>
-        <h2 class="section-title">Processo de criação</h2>
-      </div>
+      <span class="section-label">Método</span>
+      <h2 class="section-title">Processo de criação</h2>
     </div>
     <div class="processo-steps">
       <div>
-        <div class="step-number">01</div>
+        <svg class="step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="6" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="20" cy="20" r="11" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
         <div class="step-title">Descoberta</div>
         <p class="step-desc">Analisamos o mercado em que sua marca está inserida, pesquisando tendências e oportunidades. Estudamos os concorrentes diretos e indiretos para entender suas estratégias visuais e analisamos o comportamento do seu público-alvo.</p>
       </div>
       <div>
-        <div class="step-number">02</div>
+        <svg class="step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="4" x2="20" y2="36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="8.69" y1="8.69" x2="31.31" y2="31.31" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="31.31" y1="8.69" x2="8.69" y2="31.31" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
         <div class="step-title">Desenvolvimento</div>
         <p class="step-desc">Com as informações coletadas, desenvolvemos conceitos iniciais, sistema visual, paleta de cores, tipografia e elementos gráficos. Garantimos que o design seja versátil e aplicável em diversas mídias, refinando as opções conforme o feedback.</p>
       </div>
       <div>
-        <div class="step-number">03</div>
+        <svg class="step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 28 Q14 16 20 20 Q26 24 32 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M6 34 Q12 22 18 26 Q24 30 30 18 Q33 13 34 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+        </svg>
         <div class="step-title">Apresentação</div>
         <p class="step-desc">Apresentamos o sistema visual detalhadamente aos responsáveis pelo projeto, explicando as escolhas de design e como elas atendem aos objetivos da marca. Coletamos feedback, realizamos ajustes necessários e buscamos a aprovação final.</p>
       </div>
@@ -1530,6 +1531,23 @@
   const navCta = document.getElementById('navCta');
   const navSocials = document.getElementById('navSocials');
   const heroEl = document.querySelector('.hero');
+  // Contato gradient mouse tracking
+  const contatoWrap = document.querySelector('.contato-wrap');
+  if (contatoWrap) {
+    contatoWrap.addEventListener('mouseenter', () => {
+      contatoWrap.style.backgroundImage = `radial-gradient(circle 280px at 50% 50%, rgba(255,123,0,0.12) 0%, transparent 100%)`;
+    });
+    contatoWrap.addEventListener('mousemove', (e) => {
+      const rect = contatoWrap.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      contatoWrap.style.backgroundImage = `radial-gradient(circle 280px at ${x}% ${y}%, rgba(255,123,0,0.12) 0%, transparent 100%)`;
+    });
+    contatoWrap.addEventListener('mouseleave', () => {
+      contatoWrap.style.backgroundImage = 'none';
+    });
+  }
+
   const backToTop = document.getElementById('backToTop');
 
   const heroObserver = new IntersectionObserver((entries) => {
