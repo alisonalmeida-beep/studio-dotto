@@ -337,6 +337,7 @@
     margin: 0 auto;
     padding: 0 clamp(10px, 2.5vw, 24px);
   }
+
   .section-label {
     display: inline-block;
     font-size: 11px;
@@ -434,14 +435,6 @@
     opacity: 0.6;
   }
 
-  .sobre-foto-icon span {
-    display: block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #fff;
-  }
-
   .sobre-content {
     display: flex;
     flex-direction: column;
@@ -496,15 +489,10 @@
 
   .experience-item:hover .exp-arrow { color: var(--orange); transform: translateX(3px); }
 
-
   /* PROCESSO */
-  .processo-wrap {
-    margin-top: 0;
-  }
+  .processo-wrap { margin-top: 0; }
 
-  .processo-header {
-    margin-bottom: 48px;
-  }
+  .processo-header { margin-bottom: 48px; }
 
   .processo-steps {
     display: grid;
@@ -532,12 +520,6 @@
     font-size: 14px;
     color: var(--text-muted);
     line-height: 1.7;
-  }
-
-  .step-divider {
-    width: 1px;
-    background: var(--border);
-    align-self: stretch;
   }
 
   /* PROJETOS */
@@ -571,7 +553,6 @@
     border-color: var(--border-hover);
     transform: translateY(-4px);
   }
-
 
   .projeto-thumb-wrap {
     position: relative;
@@ -622,8 +603,6 @@
   .projeto-card:hover .projeto-thumb-wrap .projeto-thumb { opacity: 0; }
   .projeto-card:hover .projeto-thumb-overlay { opacity: 1; }
 
-
-
   .projeto-thumb-fallback {
     width: 100%;
     aspect-ratio: 16/10;
@@ -652,10 +631,7 @@
     position: relative;
   }
 
-
-  .projeto-body {
-    padding: 24px;
-  }
+  .projeto-body { padding: 24px; }
 
   .projeto-badges {
     display: flex;
@@ -678,16 +654,6 @@
     box-shadow: 0 1px 0 rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
   }
 
-  .projeto-tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--orange);
-    margin-bottom: 10px;
-  }
-
   .projeto-title {
     font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 700;
@@ -703,16 +669,6 @@
     line-height: 1.6;
   }
 
-  .projeto-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 20px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--orange);
-  }
-
   /* CONTATO */
   .contato-wrap {
     background: var(--bg2);
@@ -726,7 +682,6 @@
     justify-content: space-between;
     gap: 40px;
     min-height: 220px;
-    transition: background-image 0.1s;
   }
 
   .contato-icon {
@@ -778,21 +733,8 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2);
   }
 
-  .contato-cta-arrow {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-  }
-
   /* FAQ */
-  .faq-header {
-    margin-bottom: 24px;
-  }
+  .faq-header { margin-bottom: 24px; }
 
   .faq-grid {
     display: flex;
@@ -826,8 +768,6 @@
     font-family: 'IBM Plex Sans', sans-serif;
     gap: 16px;
   }
-
-  .faq-trigger:hover { color: var(--text); }
 
   .faq-icon {
     width: 28px;
@@ -865,8 +805,6 @@
     padding: 0 24px 20px;
   }
 
-
-
   /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
@@ -900,20 +838,6 @@
     border-radius: 7px;
     display: block;
     object-fit: cover;
-  }
-
-  .footer-logo-mark {
-    width: 28px;
-    height: 28px;
-    background: var(--orange);
-    border-radius: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    color: #fff;
   }
 
   .footer-logo-text {
@@ -1026,7 +950,6 @@
   /* Zona 1 — botão fechar */
   .mobile-menu-zone-close {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     padding: 20px 24px;
   }
@@ -1054,8 +977,13 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
   }
 
-  /* Zona 2 — navegação */
-  .mobile-menu-zone-nav {
+  .mobile-menu-divider {
+    height: 1px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .mobile-menu-nav {
     flex: 1;
     display: flex;
     align-items: center;
@@ -1077,8 +1005,8 @@
 
   .mobile-menu-links a {
     text-decoration: none;
-    color: var(--text-muted);
-    font-size: 30px;
+    color: var(--text);
+    font-size: clamp(36px, 10vw, 52px);
     font-weight: 400;
     letter-spacing: -0.5px;
     padding: 10px 0;
@@ -1087,7 +1015,7 @@
     text-align: center;
   }
 
-  .mobile-menu-links a:hover { color: var(--text); }
+  .mobile-menu-nav a:hover { color: var(--orange); }
 
   /* Zona 3 — ícones sociais */
   .mobile-menu-zone-footer {
@@ -1181,8 +1109,10 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <!-- Zona 1: fechar -->
-  <div class="mobile-menu-zone mobile-menu-zone-close">
+
+  <!-- Header -->
+  <div class="mobile-menu-header">
+    <span class="mobile-menu-brand">Studio Dotto</span>
     <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Fechar">✕</button>
   </div>
   <!-- Zona 2: navegação -->
@@ -1275,8 +1205,6 @@
   <div class="reveal">
     <span class="section-label">Sobre</span>
     <div class="sobre-grid">
-
-      <!-- Foto com overlay -->
       <div class="sobre-foto-wrap">
         <img src="pic_portfolio_about_me.jpg" alt="Alison Almeida" class="sobre-foto-img">
         <div class="sobre-foto-overlay">
@@ -1289,8 +1217,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Bio + experiências -->
       <div class="sobre-content">
         <p class="sobre-bio">
           Designer com mais de 6 anos de experiência em branding e produtos digitais.<br><br>
@@ -1315,7 +1241,6 @@
           </li>
         </ul>
       </div>
-
     </div>
   </div>
   </div>
@@ -1371,13 +1296,10 @@
   <div class="section-inner">
   <div class="reveal">
     <div class="projetos-header">
-      <div>
-        <span class="section-label">Projetos</span>
-      </div>
+      <div><span class="section-label">Projetos</span></div>
     </div>
     <div class="projetos-grid">
 
-      <!-- Featured project -->
       <a href="projects/escritorio-inteligente.html" class="projeto-card">
         <div class="projeto-thumb-wrap">
           <img src="projects/cover-escritorio-inteligente.png" alt="Escritório Inteligente" class="projeto-thumb">
@@ -1394,13 +1316,10 @@
         </div>
       </a>
 
-      <!-- Placeholder projects -->
       <div class="projeto-card">
         <div class="projeto-thumb-fallback"><span>PJ</span></div>
         <div class="projeto-body">
-          <div class="projeto-badges">
-            <span class="projeto-badge">Branding</span>
-          </div>
+          <div class="projeto-badges"><span class="projeto-badge">Branding</span></div>
           <div class="projeto-title">Project Name</div>
           <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
         </div>
@@ -1409,9 +1328,7 @@
       <div class="projeto-card">
         <div class="projeto-thumb-fallback"><span>PJ</span></div>
         <div class="projeto-body">
-          <div class="projeto-badges">
-            <span class="projeto-badge">Produto Digital</span>
-          </div>
+          <div class="projeto-badges"><span class="projeto-badge">Produto Digital</span></div>
           <div class="projeto-title">Project Name</div>
           <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
         </div>
@@ -1420,9 +1337,7 @@
       <div class="projeto-card">
         <div class="projeto-thumb-fallback"><span>PJ</span></div>
         <div class="projeto-body">
-          <div class="projeto-badges">
-            <span class="projeto-badge">Identidade Visual</span>
-          </div>
+          <div class="projeto-badges"><span class="projeto-badge">Identidade Visual</span></div>
           <div class="projeto-title">Project Name</div>
           <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
         </div>
@@ -1541,17 +1456,17 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-  <a href="#" class="footer-logo">
-    <img src="logo.png" alt="Studio Dotto" class="footer-logo-img">
-    <span class="footer-logo-text">Studio Dotto</span>
-  </a>
-  <ul class="footer-links">
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#projetos">Projetos</a></li>
-    <li><a href="#contato">Contato</a></li>
-    <li><a href="#faq">Dúvidas</a></li>
-  </ul>
-  <span class="footer-copy">© 2026. Todos os direitos reservados.</span>
+    <a href="#" class="footer-logo">
+      <img src="logo.png" alt="Studio Dotto" class="footer-logo-img">
+      <span class="footer-logo-text">Studio Dotto</span>
+    </a>
+    <ul class="footer-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
+    </ul>
+    <span class="footer-copy">© 2026. Todos os direitos reservados.</span>
   </div>
 </footer>
 
@@ -1574,6 +1489,8 @@
   const navCta = document.getElementById('navCta');
   const navSocials = document.getElementById('navSocials');
   const heroEl = document.querySelector('.hero');
+  const backToTop = document.getElementById('backToTop');
+
   // Contato gradient mouse tracking
   const contatoWrap = document.querySelector('.contato-wrap');
   if (contatoWrap) {
@@ -1591,8 +1508,6 @@
     });
   }
 
-  const backToTop = document.getElementById('backToTop');
-
   const heroObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1609,7 +1524,6 @@
 
   if (heroEl) heroObserver.observe(heroEl);
 
-  // Nav active state on click
   const navLinks = document.querySelectorAll('.nav-center a');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -1618,7 +1532,6 @@
     });
   });
 
-  // Nav active state on scroll
   const sections = [
     { id: 'home', el: document.querySelector('.hero') },
     { id: 'sobre', el: document.getElementById('sobre') },
