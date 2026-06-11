@@ -374,7 +374,7 @@
 
   .sobre-foto-img {
     width: 100%;
-    aspect-ratio: 3/4;
+    aspect-ratio: 3/3.2;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -402,7 +402,7 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 16px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -447,6 +447,7 @@
     font-weight: 400;
   }
 
+
   .experience-list {
     list-style: none;
     display: flex;
@@ -490,7 +491,7 @@
   /* PROCESSO */
   .processo-wrap { margin-top: 0; }
 
-  .processo-header { margin-bottom: 48px; }
+  .processo-header { margin-bottom: 72px; }
 
   .processo-steps {
     display: grid;
@@ -498,12 +499,22 @@
     gap: 48px;
   }
 
+  .step {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .step.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .step-icon {
     width: 40px;
     height: 40px;
     margin-bottom: 24px;
-    color: var(--text);
-    opacity: 0.7;
+    display: block;
   }
 
   .step-title {
@@ -1285,24 +1296,6 @@
           Designer com mais de 6 anos de experiência em branding e produtos digitais.<br><br>
           Com um método que cuida da marca de forma estratégica, entregando um sistema visual que transmite confiança e aumenta a visibilidade do seu negócio por meio de design orientado a resultados.
         </p>
-        <ul class="experience-list">
-          <li class="experience-item">
-            <span class="exp-label">Suflex [2023 - Momento]</span>
-            <span class="exp-arrow">→</span>
-          </li>
-          <li class="experience-item">
-            <span class="exp-label">Escandi [2022 - 2023]</span>
-            <span class="exp-arrow">→</span>
-          </li>
-          <li class="experience-item">
-            <span class="exp-label">Lunes [2021 - 2022]</span>
-            <span class="exp-arrow">→</span>
-          </li>
-          <li class="experience-item">
-            <span class="exp-label">Indoor Channel [2019 - 2021]</span>
-            <span class="exp-arrow">→</span>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
@@ -1320,30 +1313,18 @@
       <h2 class="section-title">Processo de criação</h2>
     </div>
     <div class="processo-steps">
-      <div>
-        <svg class="step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="20" cy="20" r="6" stroke="currentColor" stroke-width="1.5"/>
-          <circle cx="20" cy="20" r="11" stroke="currentColor" stroke-width="1.5"/>
-          <circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="1.5"/>
-        </svg>
+      <div class="step" style="transition-delay: 0ms">
+        <img src="assets/symbols/discovery.svg" class="step-icon" alt="">
         <div class="step-title">Descoberta</div>
         <p class="step-desc">Analisamos o mercado em que sua marca está inserida, pesquisando tendências e oportunidades. Estudamos os concorrentes diretos e indiretos para entender suas estratégias visuais e analisamos o comportamento do seu público-alvo.</p>
       </div>
-      <div>
-        <svg class="step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="20" y1="4" x2="20" y2="36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="8.69" y1="8.69" x2="31.31" y2="31.31" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="31.31" y1="8.69" x2="8.69" y2="31.31" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
+      <div class="step" style="transition-delay: 120ms">
+        <img src="assets/symbols/development.svg" class="step-icon" alt="">
         <div class="step-title">Desenvolvimento</div>
         <p class="step-desc">Com as informações coletadas, desenvolvemos conceitos iniciais, sistema visual, paleta de cores, tipografia e elementos gráficos. Garantimos que o design seja versátil e aplicável em diversas mídias, refinando as opções conforme o feedback.</p>
       </div>
-      <div>
-        <svg class="step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 28 Q14 16 20 20 Q26 24 32 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M6 34 Q12 22 18 26 Q24 30 30 18 Q33 13 34 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-        </svg>
+      <div class="step" style="transition-delay: 240ms">
+        <img src="assets/symbols/presentation.svg" class="step-icon" alt="">
         <div class="step-title">Apresentação</div>
         <p class="step-desc">Apresentamos o sistema visual detalhadamente aos responsáveis pelo projeto, explicando as escolhas de design e como elas atendem aos objetivos da marca. Coletamos feedback, realizamos ajustes necessários e buscamos a aprovação final.</p>
       </div>
@@ -1668,6 +1649,7 @@
   }, { threshold: 0.08 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.step').forEach(el => observer.observe(el));
 </script>
 
 </body>
