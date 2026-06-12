@@ -100,6 +100,13 @@ export default function Projects() {
     el.addEventListener('scroll', updateButtons, { passive: true });
     updateButtons();
 
+    const trinkeryCard = document.getElementById('trinkeryCard');
+    const trinkeryVideo = document.getElementById('trinkeryHoverVideo') as HTMLVideoElement | null;
+    function onTrinkeryEnter() { trinkeryVideo?.play(); }
+    function onTrinkeryLeave() { if (trinkeryVideo) { trinkeryVideo.pause(); trinkeryVideo.currentTime = 0; } }
+    trinkeryCard?.addEventListener('mouseenter', onTrinkeryEnter);
+    trinkeryCard?.addEventListener('mouseleave', onTrinkeryLeave);
+
     return () => {
       el.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mouseup', onMouseUp);
@@ -107,6 +114,8 @@ export default function Projects() {
       if (prevBtn) prevBtn.removeEventListener('click', onPrevClick);
       if (nextBtn) nextBtn.removeEventListener('click', onNextClick);
       el.removeEventListener('scroll', updateButtons);
+      trinkeryCard?.removeEventListener('mouseenter', onTrinkeryEnter);
+      trinkeryCard?.removeEventListener('mouseleave', onTrinkeryLeave);
     };
   }, []);
 
@@ -141,25 +150,58 @@ export default function Projects() {
             <div className="projeto-card-label">Escritório Inteligente</div>
           </a>
 
-          <div className="projeto-card">
-            <div className="projeto-thumb-fallback"><span>PJ</span></div>
-            <div className="projeto-card-label">Project Name</div>
-          </div>
+          <a href={`${BP}/projects/trinkery`} className="projeto-card" id="trinkeryCard">
+            <div className="projeto-thumb-wrap">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${BP}/projects/trinkery/6-bag-mockup.png`} alt="Trinkery" className="projeto-thumb" />
+              <video
+                id="trinkeryHoverVideo"
+                className="projeto-thumb-hover"
+                muted
+                playsInline
+                loop
+                preload="metadata"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              >
+                <source src={`${BP}/projects/trinkery/4-showcase-1080p.mp4`} type="video/mp4" />
+              </video>
+              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+            </div>
+            <div className="projeto-card-label">Trinkery</div>
+          </a>
 
-          <div className="projeto-card">
-            <div className="projeto-thumb-fallback"><span>PJ</span></div>
-            <div className="projeto-card-label">Project Name</div>
-          </div>
+          <a href={`${BP}/projects/dcvmn`} className="projeto-card">
+            <div className="projeto-thumb-wrap">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${BP}/projects/dcvmn/cover-dcvmn.png`} alt="DCVMN" className="projeto-thumb" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${BP}/projects/dcvmn/5-logo-reveal-dcvmn.gif`} alt="" className="projeto-thumb-hover" />
+              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+            </div>
+            <div className="projeto-card-label">DCVMN</div>
+          </a>
 
-          <div className="projeto-card">
-            <div className="projeto-thumb-fallback"><span>PJ</span></div>
-            <div className="projeto-card-label">Project Name</div>
-          </div>
+          <a href={`${BP}/projects/ligy-energia`} className="projeto-card">
+            <div className="projeto-thumb-wrap">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${BP}/projects/ligy-energia/cover-ligy-energia.png`} alt="Ligy Energia" className="projeto-thumb" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${BP}/projects/ligy-energia/4-ligy.gif`} alt="" className="projeto-thumb-hover" />
+              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+            </div>
+            <div className="projeto-card-label">Ligy Energia</div>
+          </a>
 
-          <div className="projeto-card">
-            <div className="projeto-thumb-fallback"><span>PJ</span></div>
-            <div className="projeto-card-label">Project Name</div>
-          </div>
+          <a href={`${BP}/projects/profitor`} className="projeto-card">
+            <div className="projeto-thumb-wrap">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${BP}/projects/profitor/12-profitor.png`} alt="Profitor" className="projeto-thumb" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${BP}/projects/profitor/3-profitor.gif`} alt="" className="projeto-thumb-hover" />
+              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+            </div>
+            <div className="projeto-card-label">Profitor</div>
+          </a>
 
           <div className="projeto-card">
             <div className="projeto-thumb-fallback"><span>PJ</span></div>
