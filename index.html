@@ -26,9 +26,10 @@
     --text-subtle: rgba(26,24,20,0.3);
     --radius: 12px;
     --radius-sm: 8px;
+    --sp: clamp(16px, 3vw, 40px);
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     background: var(--bg);
@@ -36,18 +37,36 @@
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 16px;
     line-height: 1.6;
-    overflow-x: hidden;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(100%, 1600px);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    pointer-events: none;
+    z-index: 998;
   }
 
   /* NAV */
   nav {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 0; left: 50%; right: auto;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1600px;
     z-index: 100;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 20px clamp(10px, 2.5vw, 24px);
+    padding: 20px var(--sp);
     background: rgba(255,255,255,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
@@ -211,9 +230,7 @@
   }
 
   .hero-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 clamp(10px, 2.5vw, 24px);
+    padding: 0 var(--sp);
     display: grid;
     grid-template-rows: 1fr auto;
     flex: 1;
@@ -321,14 +338,13 @@
 
   /* SECTION COMMON */
   section {
-    padding: clamp(30px, 4vw, 50px) 0;
+    padding: clamp(60px, 4vw, 70px) 0;
     width: 100%;
   }
 
+
   .section-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 clamp(10px, 2.5vw, 24px);
+    padding: 0 var(--sp);
   }
 
   .section-label {
@@ -338,7 +354,7 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--orange);
-    margin-bottom: 24px;
+    margin-bottom: 32px;
   }
 
   .section-title {
@@ -363,7 +379,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 64px;
     align-items: start;
-    margin-top: 40px;
   }
 
   .sobre-foto-wrap {
@@ -534,39 +549,90 @@
   /* PROJETOS */
   .projetos-header {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 48px;
+    margin-bottom: 40px;
     flex-wrap: wrap;
     gap: 20px;
   }
 
-  .projetos-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+  .projetos-header .section-label { margin-bottom: 0; }
+
+  .carousel-nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.6);
+    transition: box-shadow 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .carousel-btn:hover:not(:disabled) {
+    border-color: rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+  }
+
+  .carousel-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+  }
+
+  .projetos-carousel-outer {
+    overflow: hidden;
+  }
+
+  .projetos-carousel {
+    display: flex;
+    gap: 12px;
+    padding: 4px 40px 16px var(--sp);
+    overflow-x: scroll;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .projetos-carousel::-webkit-scrollbar { display: none; }
+
+  .projetos-carousel.is-dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
   }
 
   .projeto-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
+    flex: 0 0 calc((100vw - var(--sp) - 24px) / 2.5);
     text-decoration: none;
     color: var(--text);
-    transition: border-color 0.2s, transform 0.2s;
+    transition: transform 0.2s;
     display: block;
   }
 
   .projeto-card:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-4px);
+    transform: translateY(-3px);
+  }
+
+  .projetos-carousel.is-dragging .projeto-card {
+    pointer-events: none;
   }
 
   .projeto-thumb-wrap {
     position: relative;
     overflow: hidden;
     display: block;
+    border-radius: 16px;
   }
 
   .projeto-thumb-wrap .projeto-thumb,
@@ -587,7 +653,7 @@
   .projeto-thumb-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.35);
+    background: rgba(0,0,0,0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -621,6 +687,7 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
+    border-radius: 16px;
   }
 
   .projeto-thumb-fallback::before {
@@ -640,42 +707,14 @@
     position: relative;
   }
 
-  .projeto-body { padding: 24px; }
-
-  .projeto-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
-  }
-
-  .projeto-badge {
-    display: inline-flex;
-    align-items: center;
-    background: #F4F4F5;
-    color: #52525B;
-    font-size: 11px;
+  .projeto-card-label {
+    padding: 12px 0 0;
+    font-size: 15px;
     font-weight: 500;
-    letter-spacing: 0.3px;
-    padding: 3px 10px;
-    border-radius: 100px;
-    border: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 0 1px 0 rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
-  }
-
-  .projeto-title {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    margin-bottom: 10px;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
-  }
-
-  .projeto-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.6;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /* CONTATO */
@@ -783,13 +822,15 @@
     height: 28px;
     min-width: 28px;
     border-radius: 50%;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(0,0,0,0.12);
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    color: var(--text-muted);
-    transition: transform 0.3s, border-color 0.2s, color 0.2s;
+    color: var(--text);
+    transition: transform 0.3s, border-color 0.15s, box-shadow 0.15s, color 0.2s;
     line-height: 1;
   }
 
@@ -797,6 +838,7 @@
     transform: rotate(45deg);
     border-color: var(--orange);
     color: var(--orange);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
   }
 
   .faq-answer {
@@ -814,6 +856,86 @@
     padding: 0 24px 20px;
   }
 
+  /* FAQ LAYOUT */
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .faq-left {
+    position: sticky;
+    top: 100px;
+  }
+
+  .faq-left .section-title {
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+
+  .faq-underline {
+    width: 36px;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 2px;
+    margin: 20px 0 24px;
+  }
+
+  .faq-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .faq-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, background 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .faq-btn:hover {
+    border-color: var(--border-hover);
+    background: var(--bg2);
+  }
+
+  .faq-right .faq-item {
+    border: none;
+    border-top: 1px solid var(--border);
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .faq-right .faq-item:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-right .faq-item:hover { border-color: var(--border); }
+
+  .faq-right .faq-trigger {
+    padding: 20px 0;
+  }
+
+  .faq-right .faq-answer {
+    padding: 0;
+  }
+
+  .faq-right .faq-item.open .faq-answer {
+    padding: 0 0 20px;
+  }
+
   /* FOOTER */
   footer {
     background: var(--text);
@@ -821,9 +943,7 @@
   }
 
   .footer-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 4vw, 48px);
+    padding: 0 var(--sp);
   }
 
   .footer-top {
@@ -1067,14 +1187,17 @@
 
   .mobile-menu-links {
     position: static;
+    transform: none;
     background: none;
     backdrop-filter: none;
-    border-bottom: none;
+    border: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0;
     z-index: auto;
+    max-width: none;
+    width: auto;
   }
 
   .mobile-menu-links a {
@@ -1161,22 +1284,28 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    nav { grid-template-columns: 1fr auto; padding: 16px 20px; }
+    nav { grid-template-columns: 1fr auto; padding: 16px var(--sp); }
     .nav-center { display: none; }
     .nav-right-label, .nav-social { display: none; }
     .nav-hamburger { display: flex; }
 
-    .hero { padding: 80px 20px 32px; }
+    .hero { padding: 80px 0 32px; }
     .hero-body { grid-template-columns: 1fr; gap: 32px; align-items: flex-start; padding-top: 40px; }
     .hero-left { gap: 24px; }
     .hero-title { font-size: clamp(40px, 11vw, 72px); }
 
     .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
     .processo-steps { grid-template-columns: 1fr; gap: 32px; }
-    .projetos-grid { grid-template-columns: 1fr; }
 
     .footer-top { grid-template-columns: 1fr; gap: 40px; }
     .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+    body::after { display: none; }
+    .projeto-card { flex: 0 0 calc((100vw - var(--sp) - 12px) / 1.5); }
+    .faq-layout { grid-template-columns: 1fr; gap: 32px; }
+    .faq-left { position: static; }
+    .faq-left .section-title { margin-bottom: 16px; }
+    .faq-desc { margin-top: 0; }
   }
 </style>
 </head>
@@ -1341,8 +1470,19 @@
   <div class="reveal">
     <div class="projetos-header">
       <div><span class="section-label">Projetos</span></div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="carouselPrev" aria-label="Anterior">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="carousel-btn" id="carouselNext" aria-label="Próximo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
     </div>
-    <div class="projetos-grid">
+  </div>
+  </div>
+  <div class="projetos-carousel-outer reveal">
+    <div class="projetos-carousel" id="projetosCarousel">
 
       <a href="projects/escritorio-inteligente.html" class="projeto-card">
         <div class="projeto-thumb-wrap">
@@ -1350,45 +1490,35 @@
           <img src="projects/logo-reveal.gif" alt="" class="projeto-thumb-hover">
           <div class="projeto-thumb-overlay"><span>Ver projeto</span></div>
         </div>
-        <div class="projeto-body">
-          <div class="projeto-badges">
-            <span class="projeto-badge">Branding</span>
-            <span class="projeto-badge">Identidade Visual</span>
-          </div>
-          <div class="projeto-title">Escritório Inteligente</div>
-          <p class="projeto-desc">O Escritório Inteligente nasceu de um propósito claro: transformar, capacitar e dar protagonismo à profissão contábil. Por meio de sua metodologia, consegue converter um grande volume de trabalho operacional em dados estratégicos para que os contadores possam interpretá-los.</p>
-        </div>
+        <div class="projeto-card-label">Escritório Inteligente</div>
       </a>
 
       <div class="projeto-card">
         <div class="projeto-thumb-fallback"><span>PJ</span></div>
-        <div class="projeto-body">
-          <div class="projeto-badges"><span class="projeto-badge">Branding</span></div>
-          <div class="projeto-title">Project Name</div>
-          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
-        </div>
+        <div class="projeto-card-label">Project Name</div>
       </div>
 
       <div class="projeto-card">
         <div class="projeto-thumb-fallback"><span>PJ</span></div>
-        <div class="projeto-body">
-          <div class="projeto-badges"><span class="projeto-badge">Produto Digital</span></div>
-          <div class="projeto-title">Project Name</div>
-          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
-        </div>
+        <div class="projeto-card-label">Project Name</div>
       </div>
 
       <div class="projeto-card">
         <div class="projeto-thumb-fallback"><span>PJ</span></div>
-        <div class="projeto-body">
-          <div class="projeto-badges"><span class="projeto-badge">Identidade Visual</span></div>
-          <div class="projeto-title">Project Name</div>
-          <p class="projeto-desc">This guide defines the visual language, design style, and principles that shape a clear and consistent brand experience, no matter the team or area of expertise.</p>
-        </div>
+        <div class="projeto-card-label">Project Name</div>
+      </div>
+
+      <div class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>PJ</span></div>
+        <div class="projeto-card-label">Project Name</div>
+      </div>
+
+      <div class="projeto-card">
+        <div class="projeto-thumb-fallback"><span>PJ</span></div>
+        <div class="projeto-card-label">Project Name</div>
       </div>
 
     </div>
-  </div>
   </div>
 </section>
 
@@ -1423,75 +1553,82 @@
 <section id="faq">
   <div class="section-inner">
   <div class="reveal">
-    <div class="faq-header">
-      <span class="section-label">Dúvidas frequentes</span>
-    </div>
-    <div class="faq-grid">
+    <div class="faq-layout">
 
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          O que está incluso no sistema visual?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">O sistema visual inclui logotipo e suas variações, paleta de cores, tipografia, elementos gráficos de apoio, guia de aplicação e arquivos finais prontos para uso em diferentes mídias.</div>
+      <div class="faq-left">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Dúvidas<br>frequentes</h2>
+        <p class="faq-desc">Não encontrou o que precisava? Entre em contato e te respondemos em até 24 horas.</p>
+        <a href="https://api.whatsapp.com/send/?phone=5588994360637&text&type=phone_number&app_absent=0" target="_blank" class="btn-primary">Entrar em contato</a>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          Vocês também criam materiais de aplicação da marca?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">Sim! Além do sistema visual completo, oferecemos criação de materiais como apresentações, posts para redes sociais, papelaria e outros itens de aplicação da marca.</div>
-      </div>
+      <div class="faq-right">
 
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          Qual é o prazo para desenvolver uma identidade visual?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">O prazo médio é de 3 a 5 semanas, dependendo da complexidade do projeto e da agilidade nos feedbacks. Um cronograma detalhado é definido no início do projeto.</div>
-      </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            O que está incluso no sistema visual?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">O sistema visual inclui logotipo e suas variações, paleta de cores, tipografia, elementos gráficos de apoio, guia de aplicação e arquivos finais prontos para uso em diferentes mídias.</div>
+        </div>
 
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          Como funciona o processo de criação?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">O processo passa por três etapas: Descoberta (imersão e pesquisa), Desenvolvimento (conceitos e refinamento) e Apresentação (entrega e ajustes finais). Cada etapa tem marcos claros e momentos de feedback.</div>
-      </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            Vocês também criam materiais de aplicação da marca?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">Sim! Além do sistema visual completo, oferecemos criação de materiais como apresentações, posts para redes sociais, papelaria e outros itens de aplicação da marca.</div>
+        </div>
 
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          Quantas rodadas de ajuste estão inclusas?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">Estão inclusas duas rodadas de ajuste após cada apresentação. Revisões além desse limite são cobradas separadamente, conforme acordado no briefing inicial.</div>
-      </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            Qual é o prazo para desenvolver uma identidade visual?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">O prazo médio é de 3 a 5 semanas, dependendo da complexidade do projeto e da agilidade nos feedbacks. Um cronograma detalhado é definido no início do projeto.</div>
+        </div>
 
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          Como os arquivos finais são entregues?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">Os arquivos são entregues em formatos editáveis (AI, PDF) e de uso (PNG, SVG, JPG) via link de download organizado por categoria. Também é entregue um mini guia de uso da marca.</div>
-      </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            Como funciona o processo de criação?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">O processo passa por três etapas: Descoberta (imersão e pesquisa), Desenvolvimento (conceitos e refinamento) e Apresentação (entrega e ajustes finais). Cada etapa tem marcos claros e momentos de feedback.</div>
+        </div>
 
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          Tenho direito sobre os arquivos e a marca criada?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">Sim. Após a quitação total do projeto, todos os direitos de uso da marca criada são transferidos integralmente ao cliente, incluindo arquivos editáveis e fontes utilizadas.</div>
-      </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            Quantas rodadas de ajuste estão inclusas?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">Estão inclusas duas rodadas de ajuste após cada apresentação. Revisões além desse limite são cobradas separadamente, conforme acordado no briefing inicial.</div>
+        </div>
 
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          Como consigo um orçamento?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">Basta marcar uma reunião de 30 minutos pelo link de agendamento. Nessa conversa, entendo o seu projeto e envio uma proposta personalizada em até 48 horas.</div>
-      </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            Como os arquivos finais são entregues?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">Os arquivos são entregues em formatos editáveis (AI, PDF) e de uso (PNG, SVG, JPG) via link de download organizado por categoria. Também é entregue um mini guia de uso da marca.</div>
+        </div>
 
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            Tenho direito sobre os arquivos e a marca criada?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">Sim. Após a quitação total do projeto, todos os direitos de uso da marca criada são transferidos integralmente ao cliente, incluindo arquivos editáveis e fontes utilizadas.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            Como consigo um orçamento?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">Basta marcar uma reunião de 30 minutos pelo link de agendamento. Nessa conversa, entendo o seu projeto e envio uma proposta personalizada em até 48 horas.</div>
+        </div>
+
+      </div>
     </div>
   </div>
   </div>
@@ -1548,6 +1685,94 @@
 </button>
 
 <script>
+  // Carousel
+  (function() {
+    const el = document.getElementById('projetosCarousel');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    if (!el) return;
+
+    let down = false, startX = 0, scrollStart = 0, moved = false;
+    let velX = 0, lastX = 0, lastT = 0, rafId = null;
+
+    function cancelRaf() { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } }
+
+    function momentum() {
+      velX *= 0.94;
+      el.scrollLeft += velX;
+      updateButtons();
+      if (Math.abs(velX) > 0.4) rafId = requestAnimationFrame(momentum);
+      else rafId = null;
+    }
+
+    el.addEventListener('mousedown', (e) => {
+      cancelRaf();
+      down = true; moved = false; velX = 0;
+      startX = e.pageX; scrollStart = el.scrollLeft;
+      lastX = e.pageX; lastT = performance.now();
+      el.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!down) return;
+      down = false;
+      el.classList.remove('is-dragging');
+      if (Math.abs(velX) > 0.5) rafId = requestAnimationFrame(momentum);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!down) return;
+      const dx = e.pageX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      const now = performance.now();
+      const dt = now - lastT;
+      if (dt > 0) {
+        const instant = (lastX - e.pageX) / dt * 14;
+        velX = velX * 0.6 + instant * 0.4;
+      }
+      lastX = e.pageX; lastT = now;
+      el.scrollLeft = scrollStart - dx;
+      updateButtons();
+    });
+
+    el.addEventListener('click', (e) => { if (moved) { e.preventDefault(); } moved = false; }, true);
+
+    // Button scroll with ease-out
+    function scrollTo(target) {
+      cancelRaf();
+      const start = el.scrollLeft;
+      const dist = target - start;
+      const t0 = performance.now();
+      const dur = 420;
+      function step(t) {
+        const p = Math.min((t - t0) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 4);
+        el.scrollLeft = start + dist * ease;
+        updateButtons();
+        if (p < 1) rafId = requestAnimationFrame(step);
+        else rafId = null;
+      }
+      rafId = requestAnimationFrame(step);
+    }
+
+    function cardWidth() {
+      const c = el.querySelector('.projeto-card');
+      return c ? c.offsetWidth + 12 : 400;
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => scrollTo(el.scrollLeft - cardWidth()));
+    if (nextBtn) nextBtn.addEventListener('click', () => scrollTo(el.scrollLeft + cardWidth()));
+
+    function updateButtons() {
+      if (!prevBtn || !nextBtn) return;
+      prevBtn.disabled = el.scrollLeft <= 0;
+      nextBtn.disabled = el.scrollLeft >= el.scrollWidth - el.clientWidth - 2;
+    }
+
+    el.addEventListener('scroll', updateButtons, { passive: true });
+    updateButtons();
+  })();
+
   function openMobileMenu() {
     document.getElementById('mobileMenu').classList.add('open');
     document.body.style.overflow = 'hidden';
