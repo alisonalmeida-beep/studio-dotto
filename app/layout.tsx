@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   description: "Studio Dotto — Brand Product Designer",
   icons: {
     icon: [
-      { url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/assets/logotype/favicon.svg`, type: "image/svg+xml" },
-      { url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/assets/logotype/favicon.png`, type: "image/png" },
+      { url: `/assets/logotype/favicon.svg`, type: "image/svg+xml" },
+      { url: `/assets/logotype/favicon.png`, type: "image/png" },
     ],
   },
 };
