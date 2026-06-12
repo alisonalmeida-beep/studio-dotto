@@ -167,8 +167,9 @@
 
   /* PROJECT HEADER */
   .project-header {
-    padding: clamp(60px, 4vw, 70px) 0;
+    padding: clamp(60px, 4vw, 70px) var(--sp);
     border-bottom: 1px solid var(--border);
+    margin: 0 calc(-1 * var(--sp));
   }
 
   .project-badges {
@@ -228,8 +229,9 @@
 
   /* SECTIONS */
   .section {
-    padding: clamp(60px, 4vw, 70px) 0;
+    padding: clamp(60px, 4vw, 70px) var(--sp);
     border-bottom: 1px solid var(--border);
+    margin: 0 calc(-1 * var(--sp));
   }
 
   .section:last-child { border-bottom: none; }
@@ -357,6 +359,109 @@
     color: #fff;
   }
 
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    width: 100%;
+  }
+
+  .footer-inner {
+    padding: 0 var(--sp);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 64px;
+    align-items: start;
+    padding: 64px 0 56px;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    display: block;
+    text-decoration: none;
+  }
+
+  .footer-logo img {
+    height: 28px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .footer-tagline {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+    max-width: 260px;
+  }
+
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 20px;
+  }
+
+  .footer-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-nav-links a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-nav-links a:hover { color: #fff; }
+
+  .footer-social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-social-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-social-links a:hover { color: #fff; }
+
+  .footer-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    gap: 16px;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(255,255,255,0.25);
+  }
+
   /* REVEAL */
   .reveal {
     opacity: 0;
@@ -376,6 +481,8 @@
     .image-grid-3 { grid-template-columns: 1fr; }
     .next-project { flex-direction: column; align-items: flex-start; }
     body::after { display: none; }
+    .footer-top { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
   }
 </style>
 </head>
@@ -564,6 +671,46 @@
     </a>
   </div>
 </div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/logotype/logo-symbol.svg" alt="Studio Dotto">
+        </a>
+        <p class="footer-tagline">by Studio Dotto</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Navegação</p>
+        <ul class="footer-nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#sobre">Sobre</a></li>
+          <li><a href="../index.html#projetos">Projetos</a></li>
+          <li><a href="../index.html#contato">Contato</a></li>
+          <li><a href="../index.html#faq">Dúvidas</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Social</p>
+        <div class="footer-social-links">
+          <a href="https://www.instagram.com/oalisonorsi/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.linkedin.com/in/oalisonalmeida/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Studio Dotto. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
 
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>

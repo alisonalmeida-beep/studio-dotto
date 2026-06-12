@@ -376,9 +376,9 @@
   /* SOBRE */
   .sobre-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.75fr 1fr;
     gap: 64px;
-    align-items: start;
+    align-items: stretch;
   }
 
   .sobre-foto-wrap {
@@ -451,7 +451,7 @@
   .sobre-content {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    justify-content: space-between;
     padding-top: 8px;
   }
 
@@ -460,6 +460,98 @@
     color: var(--text);
     line-height: 1.6;
     font-weight: 400;
+  }
+
+  .sobre-heading {
+    font-size: clamp(22px, 2.6vw, 36px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+    letter-spacing: -0.4px;
+  }
+
+  .sobre-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .sobre-stats {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .sobre-stat-item {
+    flex: 1;
+    padding: 0 24px;
+    border-right: 1px solid var(--border);
+  }
+
+  .sobre-stat-item:first-child { padding-left: 0; }
+  .sobre-stat-item:last-child { border-right: none; }
+
+  .sobre-stat-number {
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: -1.5px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .sobre-stat-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  .sobre-services {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sobre-service-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .sobre-service-row:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sobre-service-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .sobre-service-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .sobre-service-tag {
+    display: inline-flex;
+    align-items: center;
+    background: #fff;
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(0,0,0,0.12);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.6);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
 
@@ -1421,10 +1513,30 @@
         </div>
       </div>
       <div class="sobre-content">
-        <p class="sobre-bio">
-          Designer com mais de 6 anos de experiência em branding e produtos digitais.<br><br>
-          Com um método que cuida da marca de forma estratégica, entregando um sistema visual que transmite confiança e aumenta a visibilidade do seu negócio por meio de design orientado a resultados.
-        </p>
+        <h2 class="sobre-heading">Designer com mais de 6 anos de experiência em branding e produtos digitais.</h2>
+        <div class="sobre-services">
+          <div class="sobre-service-row">
+            <div>
+              <div class="sobre-service-title">Identidade de marca</div>
+              <div class="sobre-service-desc">Construímos sistemas visuais completos do posicionamento à aplicação com clareza e consistência.</div>
+            </div>
+            <span class="sobre-service-tag">Branding</span>
+          </div>
+          <div class="sobre-service-row">
+            <div>
+              <div class="sobre-service-title">Produto digital</div>
+              <div class="sobre-service-desc">Projetamos interfaces e fluxos que conectam marca, negócio e usuário com eficiência.</div>
+            </div>
+            <span class="sobre-service-tag">UI/UX</span>
+          </div>
+          <div class="sobre-service-row">
+            <div>
+              <div class="sobre-service-title">Website</div>
+              <div class="sobre-service-desc">Desenvolvemos sites que reforçam posicionamento e traduzem a marca em experiência digital.</div>
+            </div>
+            <span class="sobre-service-tag">Web</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1881,6 +1993,33 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   document.querySelectorAll('.step').forEach(el => observer.observe(el));
+
+  // Stat counters
+  const statsEl = document.getElementById('sobreStats');
+  if (statsEl) {
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        counterObserver.unobserve(entry.target);
+        entry.target.querySelectorAll('.sobre-stat-number').forEach(el => {
+          const target = +el.dataset.count;
+          const suffix = el.dataset.suffix;
+          const duration = 1200;
+          let startTime = null;
+          function step(ts) {
+            if (!startTime) startTime = ts;
+            const p = Math.min((ts - startTime) / duration, 1);
+            const ease = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.floor(ease * target) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+            else el.textContent = target + suffix;
+          }
+          requestAnimationFrame(step);
+        });
+      });
+    }, { threshold: 0.4 });
+    counterObserver.observe(statsEl);
+  }
 </script>
 
 </body>
