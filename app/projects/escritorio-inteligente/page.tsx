@@ -51,7 +51,7 @@ export default function EscritorioInteligente() {
       {/* VIDEO HERO */}
       <div className="video-hero">
         <video autoPlay loop muted playsInline disablePictureInPicture>
-          <source src={`${BP}/projects/motion-board-escritorio-inteligente.mp4`} type="video/mp4" />
+          <source src={`${BP}/projects/escritorio-inteligente/motion-board-escritorio-inteligente.mp4`} type="video/mp4" />
         </video>
       </div>
 
@@ -93,15 +93,15 @@ export default function EscritorioInteligente() {
           <span className="section-label">Visual</span>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/logo-concept-escritorio-inteligente.gif`} alt="Logo Concept" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/logo-concept-escritorio-inteligente.gif`} alt="Logo Concept" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/logo-reveal.gif`} alt="Logo Reveal" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/logo-reveal.gif`} alt="Logo Reveal" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/before-after-escritorio-inteligente.gif`} alt="Before &amp; After" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/before-after-escritorio-inteligente.gif`} alt="Before &amp; After" className="project-img" />
           </div>
         </div>
 
@@ -154,55 +154,55 @@ export default function EscritorioInteligente() {
           <span className="section-label">Aplicações</span>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/mockup-bag-escritorio-inteligente.gif`} alt="Mockup Bag" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/mockup-bag-escritorio-inteligente.gif`} alt="Mockup Bag" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/business-card-escritorio-inteligente.png`} alt="Business Card" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/business-card-escritorio-inteligente.png`} alt="Business Card" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/mockup-notebook-escritorio-inteligente.gif`} alt="Mockup Notebook" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/mockup-notebook-escritorio-inteligente.gif`} alt="Mockup Notebook" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/social-escritorio-inteligente.jpg`} alt="Social" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/social-escritorio-inteligente.jpg`} alt="Social" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/social-media-escritorio-inteligente.gif`} alt="Social Media" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/social-media-escritorio-inteligente.gif`} alt="Social Media" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/mockup-site-escritorio-inteligente.jpg`} alt="Mockup Site" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/mockup-site-escritorio-inteligente.jpg`} alt="Mockup Site" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/mockup-shirt-escritorio-inteligente.png`} alt="Mockup Shirt" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/mockup-shirt-escritorio-inteligente.png`} alt="Mockup Shirt" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/site-ipad-escritorio-inteligente.jpg`} alt="Site iPad" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/site-ipad-escritorio-inteligente.jpg`} alt="Site iPad" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/dash-motion-escritorio-inteligente.gif`} alt="Dash Motion" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/dash-motion-escritorio-inteligente.gif`} alt="Dash Motion" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/website-motion-escritorio-inteligente.gif`} alt="Website Motion" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/website-motion-escritorio-inteligente.gif`} alt="Website Motion" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/ei-portal-escritorio-inteligente.png`} alt="EI Portal" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/ei-portal-escritorio-inteligente.png`} alt="EI Portal" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/mockup-metro-escritorio-inteligente.png`} alt="Mockup Metro" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/mockup-metro-escritorio-inteligente.png`} alt="Mockup Metro" className="project-img" />
           </div>
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BP}/projects/gallery-photos-escritorio-inteligente.png`} alt="Gallery Photos" className="project-img" />
+            <img src={`${BP}/projects/escritorio-inteligente/gallery-photos-escritorio-inteligente.png`} alt="Gallery Photos" className="project-img" />
           </div>
         </div>
 

@@ -133,9 +133,9 @@ export default function Projects() {
           <a href={`${BP}/projects/escritorio-inteligente`} className="projeto-card">
             <div className="projeto-thumb-wrap">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/cover-escritorio-inteligente.png`} alt="Escritório Inteligente" className="projeto-thumb" />
+              <img src={`${BP}/projects/escritorio-inteligente/cover-escritorio-inteligente.png`} alt="Escritório Inteligente" className="projeto-thumb" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/logo-reveal.gif`} alt="" className="projeto-thumb-hover" />
+              <img src={`${BP}/projects/escritorio-inteligente/logo-reveal.gif`} alt="" className="projeto-thumb-hover" />
               <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
             </div>
             <div className="projeto-card-label">Escritório Inteligente</div>
