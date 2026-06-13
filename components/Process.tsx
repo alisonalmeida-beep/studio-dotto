@@ -86,7 +86,7 @@ export default function Process() {
           <div className="processo-steps">
 
             <div className="step">
-              <svg className="step-icon icon-discovery" width="40" height="40" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="step-icon icon-discovery" width="80" height="80" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle className="globe-outer" cx="30.2725" cy="30.2725" r="29.7959" stroke="black" strokeWidth="0.952993"/>
                 <ellipse className="globe-e1" cx="29.8641" cy="30.6797" rx="22.0408" ry="29.7959" stroke="black" strokeWidth="0.952993"/>
                 <ellipse className="globe-e2" cx="30.2721" cy="30.6797" rx="13.4694" ry="29.7959" stroke="black" strokeWidth="0.952993"/>
@@ -97,7 +97,7 @@ export default function Process() {
             </div>
 
             <div className="step">
-              <svg className="step-icon icon-development" width="40" height="40" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="step-icon icon-development" width="80" height="80" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle className="ring-1" cx="30.4764" cy="30.4764" r="29.9998" stroke="black" strokeWidth="0.952993"/>
                 <circle className="ring-2" cx="30.476" cy="38.9008" r="21.5756" stroke="black" strokeWidth="0.953124"/>
                 <circle className="ring-3" cx="30.4766" cy="47.1202" r="13.3565" stroke="black" strokeWidth="0.953124"/>
@@ -108,7 +108,7 @@ export default function Process() {
             </div>
 
             <div className="step">
-              <svg className="step-icon icon-presentation" width="40" height="40" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="step-icon icon-presentation" width="80" height="80" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <ellipse className="orbit-1" cx="30.4765" cy="30.4766" rx="11.0204" ry="30" stroke="black" strokeWidth="0.952993"/>
                 <ellipse className="orbit-2" cx="30.4766" cy="30.4776" rx="11.0204" ry="30" transform="rotate(-90 30.4766 30.4776)" stroke="black" strokeWidth="0.952993"/>
                 <ellipse className="orbit-3" cx="30.4763" cy="30.4766" rx="11.0204" ry="30" transform="rotate(-135 30.4763 30.4766)" stroke="black" strokeWidth="0.952993"/>

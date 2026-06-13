@@ -1,4 +1,5 @@
 'use client';
+import Button from './Button';
 
 function toggleFaq(trigger: HTMLButtonElement) {
   const item = trigger.closest('.faq-item');
@@ -19,7 +20,7 @@ export default function FAQ() {
               <span className="section-label">FAQ</span>
               <h2 className="section-title">Dúvidas<br />frequentes</h2>
               <p className="faq-desc">Não encontrou o que precisava? Entre em contato e te respondemos em até 24 horas.</p>
-              <a href="https://api.whatsapp.com/send/?phone=5588994360637&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="btn-primary">Entrar em contato</a>
+              <Button href="https://api.whatsapp.com/send/?phone=5588994360637&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" variant="primary">Entrar em contato</Button>
             </div>
 
             <div className="faq-right">

@@ -34,6 +34,17 @@ export default function Nav() {
       });
     });
 
+    const homeLink = document.querySelector<HTMLAnchorElement>('.nav-center a[data-nav="home"]');
+    const homeBasePath = BP || '/';
+    function onHomeClick(e: Event) {
+      const onHomePage = window.location.pathname === homeBasePath || window.location.pathname === homeBasePath + '/';
+      if (onHomePage) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+    homeLink?.addEventListener('click', onHomeClick);
+
     const sections = [
       { id: 'home', el: document.querySelector('.hero') as Element | null },
       { id: 'sobre', el: document.getElementById('sobre') },
@@ -65,6 +76,7 @@ export default function Nav() {
     return () => {
       heroObserver.disconnect();
       sectionObserver.disconnect();
+      homeLink?.removeEventListener('click', onHomeClick);
     };
   }, []);
 

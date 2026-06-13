@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import MobileMenu from "@/components/MobileMenu";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const ibmPlexSans = IBM_Plex_Sans({
   weight: ["300", "400", "500", "600", "700"],
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={ibmPlexSans.className}>
       <body>
+        <LoadingScreen />
         <MobileMenu />
         {children}
       </body>

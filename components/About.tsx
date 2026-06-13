@@ -8,8 +8,10 @@ export default function About() {
           <span className="section-label">Sobre</span>
           <div className="sobre-grid">
             <div className="sobre-foto-wrap">
+              <div className="sobre-foto-img-clip">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={`${BP}/pic_portfolio_about_me.jpg`} alt="Alison Almeida" className="sobre-foto-img" />
+              </div>
               <div className="sobre-foto-overlay">
                 <div>
                   <div className="sobre-foto-name">Alison Almeida, 25</div>

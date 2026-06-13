@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import BP from '@/lib/basePath';
+import Button from './Button';
 
 export default function Projects() {
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function Projects() {
     let dragged = false;
 
     function onMouseDown(e: MouseEvent) {
+      e.preventDefault();
       cancelRaf();
       down = true; dragged = false; velX = 0;
       startX = e.pageX; scrollStart = el!.scrollLeft;
@@ -41,6 +43,14 @@ export default function Projects() {
         el!.classList.remove('is-dragging');
       }
       if (Math.abs(velX) > 0.5) rafId = requestAnimationFrame(momentum);
+    }
+
+    function onClickCapture(e: MouseEvent) {
+      if (dragged) e.preventDefault();
+    }
+
+    function onDragStart(e: DragEvent) {
+      e.preventDefault();
     }
 
     function onMouseMove(e: MouseEvent) {
@@ -93,6 +103,8 @@ export default function Projects() {
     }
 
     el.addEventListener('mousedown', onMouseDown);
+    el.addEventListener('click', onClickCapture, true);
+    el.addEventListener('dragstart', onDragStart);
     window.addEventListener('mouseup', onMouseUp);
     window.addEventListener('mousemove', onMouseMove);
     if (prevBtn) prevBtn.addEventListener('click', onPrevClick);
@@ -109,6 +121,8 @@ export default function Projects() {
 
     return () => {
       el.removeEventListener('mousedown', onMouseDown);
+      el.removeEventListener('click', onClickCapture, true);
+      el.removeEventListener('dragstart', onDragStart);
       window.removeEventListener('mouseup', onMouseUp);
       window.removeEventListener('mousemove', onMouseMove);
       if (prevBtn) prevBtn.removeEventListener('click', onPrevClick);
@@ -126,12 +140,12 @@ export default function Projects() {
           <div className="projetos-header">
             <div><span className="section-label">Projetos</span></div>
             <div className="carousel-nav">
-              <button className="carousel-btn" id="carouselPrev" aria-label="Anterior">
+              <Button variant="secondary" className="carousel-btn" id="carouselPrev" aria-label="Anterior">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-              </button>
-              <button className="carousel-btn" id="carouselNext" aria-label="Próximo">
+              </Button>
+              <Button variant="secondary" className="carousel-btn" id="carouselNext" aria-label="Próximo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-              </button>
+              </Button>
             </div>
           </div>
         </div>
