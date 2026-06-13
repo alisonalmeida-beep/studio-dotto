@@ -73,19 +73,25 @@ export default function LigyEnergia() {
           </div>
         </div>
 
-        {/* DESAFIO + OBJETIVO */}
+        {/* SOBRE + OBJETIVO */}
         <div className="section reveal" id="sec-desafio">
           <div className="section-grid">
             <div>
-              <span className="section-label">Desafio</span>
+              <span className="section-label">Sobre</span>
               <p className="section-text">
-                [Descreva aqui o desafio do projeto Ligy Energia.]
+                A Ligy é uma empresa disruptiva que busca ser a nova opção no consumo de energia. Com foco em energias renováveis e liberdade de escolha, o principal objetivo da empresa é facilitar o acesso a diferentes fontes de energia, permitindo que seus clientes façam suas próprias escolhas.
+              </p>
+              <p className="section-text">
+                Queríamos um nome fácil e curto que fizesse sentido para a marca. Assim surgiu Ligy, de Liberty + Energy.
               </p>
             </div>
             <div>
-              <span className="section-label">Objetivo</span>
+              <span className="section-label">Objetivo &amp; Estratégia</span>
               <p className="section-text">
-                [Descreva aqui o objetivo do projeto Ligy Energia.]
+                Desenvolver uma marca atemporal com personalidade que possa ser internacionalizada no futuro.
+              </p>
+              <p className="section-text">
+                Por meio da análise de mercado, buscamos nos diferenciar não apenas pelo nosso serviço inovador, mas também pela nossa identidade visual e verbal.
               </p>
             </div>
           </div>
@@ -123,13 +129,32 @@ export default function LigyEnergia() {
             <div>
               <span className="section-label">Plataforma de Marca</span>
               <p className="section-text">
-                [Adicione aqui a plataforma de marca da Ligy Energia.]
+                <strong>Por que existo? (Propósito)</strong><br />
+                Facilitamos o acesso à energia limpa. Somos o clube dos libertadores de energia. Aceleramos a liberdade de escolha no mercado de energia, para que você possa decidir como consumi-la.
+              </p>
+              <p className="section-text">
+                <strong>Como me comporto? (Personalidade)</strong><br />
+                Quero tornar o mundo melhor. Gosto de ajudar as pessoas. Sempre em busca de uma vida melhor.
+              </p>
+              <p className="section-text">
+                <strong>No que acredito? (Valores)</strong><br />
+                Sustentabilidade. Liberdade. Simplicidade. Economia.
+              </p>
+              <p className="section-text">
+                <strong>O que entrego? (Posicionamento)</strong><br />
+                Facilito o acesso a diferentes fontes de energia, habilitando e potencializando as escolhas dos meus clientes.
               </p>
             </div>
             <div>
-              <span className="section-label">Tom de Voz &amp; Taglines</span>
+              <span className="section-label">Tom de Voz</span>
               <p className="section-text">
-                [Adicione aqui o tom de voz e as taglines da Ligy Energia.]
+                Moderno, neutro, simples e direto.
+              </p>
+              <span className="section-label" style={{ marginTop: '2rem', display: 'block' }}>Taglines</span>
+              <p className="section-text">
+                Ligy — A sua liberdade de energia chegou.<br />
+                Ligy — Energia limpa, consciente e sustentável para um futuro melhor.<br />
+                Ligy — Escolha a sua energia.
               </p>
             </div>
           </div>
@@ -194,7 +219,13 @@ export default function LigyEnergia() {
           <div className="section-grid">
             <div>
               <p className="section-text">
-                [Adicione aqui os créditos do projeto Ligy Energia.]
+                <strong>Direção de Design:</strong> Diego Mourão<br />
+                <strong>Naming &amp; Estratégia de Marca:</strong> Diego Mourão<br />
+                <strong>Design de Logo e Direção de Arte:</strong> Diego Mourão, Felipe Otto &amp; Klayton Fadul<br />
+                <strong>Direção de Arte do Case:</strong> Klayton Fadul &amp; Alison Almeida<br />
+                <strong>Copywriting do Case:</strong> Joyce Lima<br />
+                <strong>Motion:</strong> Klayton Fadul<br />
+                <strong>Cliente:</strong> Ligy Energia
               </p>
             </div>
           </div>

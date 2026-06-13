@@ -11,6 +11,77 @@ export default function Hero() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const revealRef = useRef<HTMLHeadingElement>(null);
+  const dotsCanvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = dotsCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const el: HTMLCanvasElement = canvas;
+    const c: CanvasRenderingContext2D = ctx;
+
+    const GRID = 28;
+    const DOT_NORMAL = 1.5;
+    const DOT_MAX = 5.5;
+    const INFLUENCE = 130;
+
+    let mx = -9999, my = -9999;
+    let width = 0, height = 0;
+    let rafId: number;
+
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      width = el.offsetWidth;
+      height = el.offsetHeight;
+      el.width = width * dpr;
+      el.height = height * dpr;
+      c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function draw() {
+      c.clearRect(0, 0, width, height);
+      c.fillStyle = 'rgba(26,24,20,0.13)';
+      for (let x = GRID / 2; x < width; x += GRID) {
+        for (let y = GRID / 2; y < height; y += GRID) {
+          const dx = x - mx, dy = y - my;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          let r = DOT_NORMAL;
+          if (dist < INFLUENCE) {
+            const t = 1 - dist / INFLUENCE;
+            r = DOT_NORMAL + (DOT_MAX - DOT_NORMAL) * t * t;
+          }
+          c.beginPath();
+          c.arc(x, y, r, 0, Math.PI * 2);
+          c.fill();
+        }
+      }
+      rafId = requestAnimationFrame(draw);
+    }
+
+    function onMove(e: MouseEvent) {
+      const rect = el.getBoundingClientRect();
+      mx = e.clientX - rect.left;
+      my = e.clientY - rect.top;
+    }
+    function onLeave() { mx = -9999; my = -9999; }
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(el);
+    resize();
+
+    const hero = el.parentElement;
+    hero?.addEventListener('mousemove', onMove);
+    hero?.addEventListener('mouseleave', onLeave);
+    rafId = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      ro.disconnect();
+      hero?.removeEventListener('mousemove', onMove);
+      hero?.removeEventListener('mouseleave', onLeave);
+    };
+  }, []);
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -80,6 +151,7 @@ export default function Hero() {
 
   return (
     <div className="hero">
+      <canvas ref={dotsCanvasRef} aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0, maskImage: 'linear-gradient(to bottom, black 45%, transparent 68%)', WebkitMaskImage: 'linear-gradient(to bottom, black 45%, transparent 68%)' }} />
       <div className="hero-inner">
         <div className="hero-body">
           <div className="hero-left">
@@ -92,7 +164,10 @@ export default function Hero() {
           </div>
         </div>
         <div className="hero-bottom">
-          <span className="hero-bottom-left">Disponível para novos projetos</span>
+          <span className="hero-available-badge">
+            <span className="hero-available-dot" />
+            Disponível para novos projetos
+          </span>
           <div className="hero-actions">
             <Button href="#projetos" variant="primary">Ver projetos</Button>
             <Button href="https://api.whatsapp.com/send/?phone=5588994360637&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" variant="ghost">Vamos conversar</Button>

@@ -73,19 +73,19 @@ export default function Trinkery() {
           </div>
         </div>
 
-        {/* DESAFIO + OBJETIVO */}
+        {/* ORIGEM + DESAFIO */}
         <div className="section reveal" id="sec-desafio">
           <div className="section-grid">
             <div>
-              <span className="section-label">Desafio</span>
+              <span className="section-label">Origem</span>
               <p className="section-text">
-                [Descreva aqui o desafio do projeto Trinkery.]
+                A Trinkery nasceu do hobby do Rogério, que colocou muita emoção na criação de suas impressoras 3D. Ele viu ali uma oportunidade de negócio viável. Unindo a sustentabilidade das matérias-primas ao design único, a Trinkery ganhou vida como uma plataforma de e-commerce focada na venda de produtos exclusivos.
               </p>
             </div>
             <div>
               <span className="section-label">Objetivo</span>
               <p className="section-text">
-                [Descreva aqui o objetivo do projeto Trinkery.]
+                A grande ideia é tornar esses produtos acessíveis para quem não está imerso no nicho de impressão 3D. Produzindo diretamente para o consumidor final, que muitas vezes não tem tanto interesse no processo de produção (impressão 3D) quanto no produto final.
               </p>
             </div>
           </div>
@@ -122,13 +122,33 @@ export default function Trinkery() {
             <div>
               <span className="section-label">Plataforma de Marca</span>
               <p className="section-text">
-                [Adicione aqui a plataforma de marca da Trinkery: propósito, personalidade, valores e posicionamento.]
+                <strong>Por que existo? (Propósito)</strong><br />
+                Conectar pessoas a um mundo sustentável, personalizável e criativo de produtos impressos em 3D.
+              </p>
+              <p className="section-text">
+                <strong>Como me comporto? (Personalidade)</strong><br />
+                Sou carismática. Sou divertida. Sou comunicativa.
+              </p>
+              <p className="section-text">
+                <strong>No que acredito? (Valores)</strong><br />
+                Sempre priorizar a diversão. Guiada pela criatividade. Promover o pensamento sustentável.
+              </p>
+              <p className="section-text">
+                <strong>O que entrego? (Posicionamento)</strong><br />
+                Produtos únicos e personalizados que são incrivelmente criativos e transmitem a essência divertida da marca.
               </p>
             </div>
             <div>
-              <span className="section-label">Tom de Voz &amp; Taglines</span>
+              <span className="section-label">Tom de Voz</span>
               <p className="section-text">
-                [Adicione aqui o tom de voz e as taglines da Trinkery.]
+                Casual, amigável e entusiasmado. A linguagem é acessível e próxima do público, transmitindo uma atmosfera divertida e envolvente. A Trinkery visa se comunicar de forma alegre e cativante, refletindo seu posicionamento como uma marca que oferece produtos únicos e personalizados com um toque de diversão.
+              </p>
+              <span className="section-label" style={{ marginTop: '2rem', display: 'block' }}>Taglines</span>
+              <p className="section-text">
+                All the good trinkets<br />
+                Have fun with us (and don&apos;t forget our products!)<br />
+                Saving you from this boring world<br />
+                Release your funniness
               </p>
             </div>
           </div>
@@ -206,7 +226,13 @@ export default function Trinkery() {
           <div className="section-grid">
             <div>
               <p className="section-text">
-                [Adicione aqui os créditos do projeto Trinkery.]
+                <strong>Direção de Branding:</strong> Diego Mourão<br />
+                <strong>Estratégia de Marca:</strong> Joyce Lima<br />
+                <strong>Design de Logo e Direção de Arte:</strong> Klayton Fadul<br />
+                <strong>Direção de Arte do Case:</strong> Alison Almeida &amp; Klayton Fadul<br />
+                <strong>Copywriting do Case:</strong> Joyce Lima<br />
+                <strong>Motion:</strong> Klayton Fadul<br />
+                <strong>Cliente:</strong> Trinkery
               </p>
             </div>
           </div>

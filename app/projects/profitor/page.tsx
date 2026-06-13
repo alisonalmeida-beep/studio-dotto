@@ -72,19 +72,22 @@ export default function Profitor() {
           </div>
         </div>
 
-        {/* DESAFIO + OBJETIVO */}
+        {/* SOBRE + DESAFIO */}
         <div className="section reveal" id="sec-desafio">
           <div className="section-grid">
             <div>
-              <span className="section-label">Desafio</span>
+              <span className="section-label">Sobre</span>
               <p className="section-text">
-                [Descreva aqui o desafio do projeto Profitor.]
+                Profitor é uma empresa brasileira especializada em investimento e criptoativos. Segurança, transparência, conhecimento e excelência são valores centrais.
               </p>
             </div>
             <div>
-              <span className="section-label">Objetivo</span>
+              <span className="section-label">Desafio &amp; Solução</span>
               <p className="section-text">
-                [Descreva aqui o objetivo do projeto Profitor.]
+                A empresa precisava desenvolver uma marca a fim de se posicionar e se inserir no mercado digital. Com isso, oferecemos a solução completa contendo Identidade Visual, desenvolvimento de Website, Interface do Usuário e design de Experiência do Usuário.
+              </p>
+              <p className="section-text">
+                Buscamos desenvolver algo clean que tivesse uma experiência limpa e objetiva.
               </p>
             </div>
           </div>
@@ -108,24 +111,6 @@ export default function Profitor() {
           <div className="image-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={`${BP}/projects/profitor/5-profitor.png`} alt="Profitor" className="project-img" loading="lazy" />
-          </div>
-        </div>
-
-        {/* BRAND PLATFORM */}
-        <div className="section reveal" id="sec-plataforma">
-          <div className="section-grid">
-            <div>
-              <span className="section-label">Plataforma de Marca</span>
-              <p className="section-text">
-                [Adicione aqui a plataforma de marca da Profitor.]
-              </p>
-            </div>
-            <div>
-              <span className="section-label">Tom de Voz &amp; Taglines</span>
-              <p className="section-text">
-                [Adicione aqui o tom de voz e as taglines da Profitor.]
-              </p>
-            </div>
           </div>
         </div>
 
@@ -184,7 +169,9 @@ export default function Profitor() {
           <div className="section-grid">
             <div>
               <p className="section-text">
-                [Adicione aqui os créditos do projeto Profitor.]
+                <strong>Direção:</strong> Mateus Seifert<br />
+                <strong>Design:</strong> Mateus Seifert<br />
+                <strong>Apresentação:</strong> Alison Almeida
               </p>
             </div>
           </div>
@@ -194,9 +181,9 @@ export default function Profitor() {
         <div className="next-project reveal">
           <div>
             <div className="next-label">Próximo projeto</div>
-            <div className="next-title">Escritório Inteligente</div>
+            <div className="next-title">Lunes</div>
           </div>
-          <Button href={`${BP}/projects/escritorio-inteligente`} variant="secondary">
+          <Button href={`${BP}/projects/lunes`} variant="secondary">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </Button>
         </div>

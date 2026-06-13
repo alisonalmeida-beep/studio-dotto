@@ -73,19 +73,22 @@ export default function Dcvmn() {
           </div>
         </div>
 
-        {/* DESAFIO + OBJETIVO */}
+        {/* SOBRE + OBJETIVO */}
         <div className="section reveal" id="sec-desafio">
           <div className="section-grid">
             <div>
-              <span className="section-label">Desafio</span>
+              <span className="section-label">Sobre</span>
               <p className="section-text">
-                [Descreva aqui o desafio do projeto DCVMN.]
+                A DCVMN (Rede de Fabricantes de Vacinas de Países em Desenvolvimento) é uma aliança de 42 fabricantes de vacinas de 15 países em desenvolvimento.
               </p>
             </div>
             <div>
               <span className="section-label">Objetivo</span>
               <p className="section-text">
-                [Descreva aqui o objetivo do projeto DCVMN.]
+                A DCVMN está passando por uma transformação de logo e identidade de marca para fazer uma declaração poderosa. Com foco em colaboração e inovação, sua missão é garantir a disponibilidade de vacinas de alta qualidade em países emergentes, protegendo a saúde das pessoas em todo o mundo.
+              </p>
+              <p className="section-text">
+                O objetivo principal é comunicar de forma eficaz o papel da DCVMN na proteção das pessoas de maneira simples e acessível. O projeto busca transmitir a combinação perfeita de proteção, colaboração e inovação.
               </p>
             </div>
           </div>
@@ -126,13 +129,40 @@ export default function Dcvmn() {
             <div>
               <span className="section-label">Plataforma de Marca</span>
               <p className="section-text">
-                [Adicione aqui a plataforma de marca da DCVMN: propósito, personalidade, valores e posicionamento.]
+                <strong>Por que existo? (Propósito)</strong><br />
+                O propósito de marca da DCVMN é garantir a disponibilidade de vacinas de alta qualidade em países em desenvolvimento, protegendo a saúde das pessoas em todo o mundo.
+              </p>
+              <p className="section-text">
+                <strong>Como me comporto? (Personalidade)</strong><br />
+                Confiável, responsável e inovadora. Abordagem colaborativa, impulsionando mudanças positivas. Responsiva, focada no cliente e adaptável.
+              </p>
+              <p className="section-text">
+                <strong>No que acredito? (Valores)</strong><br />
+                1. Compromisso com a saúde pública e a proteção dos indivíduos.<br />
+                2. Colaboração e parceria para impulsionar inovação e crescimento.<br />
+                3. Qualidade e excelência na produção de vacinas.<br />
+                4. Responsabilidade social e ambiental.<br />
+                5. Foco na equidade e acessibilidade de vacinas em países em desenvolvimento.
+              </p>
+              <p className="section-text">
+                <strong>O que entrego? (Posicionamento)</strong><br />
+                A DCVMN trabalha para aumentar a disponibilidade de vacinas de alta qualidade em países em desenvolvimento, protegendo a saúde das pessoas em todo o mundo.
               </p>
             </div>
             <div>
-              <span className="section-label">Tom de Voz &amp; Taglines</span>
+              <span className="section-label">Tom de Voz</span>
               <p className="section-text">
-                [Adicione aqui o tom de voz e as taglines da DCVMN.]
+                Moderno, neutro, simples e direto.
+              </p>
+              <span className="section-label" style={{ marginTop: '2rem', display: 'block' }}>Taglines</span>
+              <p className="section-text">
+                We innovate, to Protect.<br />
+                We work together to Protect.<br />
+                We provide knowledge to Protect.<br />
+                We develop to Protect.<br />
+                We support to Protect.<br />
+                Everything we do is to protect.<br />
+                DCVMN. We Connect to Protect.
               </p>
             </div>
           </div>
@@ -231,7 +261,13 @@ export default function Dcvmn() {
           <div className="section-grid">
             <div>
               <p className="section-text">
-                [Adicione aqui os créditos do projeto DCVMN.]
+                <strong>Direção de Branding:</strong> Diego Mourão<br />
+                <strong>Estratégia de Marca:</strong> Diego Mourão<br />
+                <strong>Design de Logo e Direção de Arte:</strong> Diego Mourão &amp; Felipe Otto<br />
+                <strong>Direção de Arte do Case:</strong> Klayton Fadul &amp; Alison Almeida<br />
+                <strong>Copywriting do Case:</strong> Joyce Lima<br />
+                <strong>Motion:</strong> Klayton Fadul<br />
+                <strong>Cliente:</strong> DCVMN
               </p>
             </div>
           </div>
