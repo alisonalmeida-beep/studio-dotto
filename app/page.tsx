@@ -13,15 +13,15 @@ export default function Home() {
     <>
       <Nav />
       <Hero />
-      <div className="section-divider"></div>
+      <div className="section-divider reveal"></div>
       <About />
-      <div className="section-divider"></div>
+      <div className="section-divider reveal"></div>
       <Process />
-      <div className="section-divider"></div>
+      <div className="section-divider reveal"></div>
       <Projects />
-      <div className="section-divider"></div>
+      <div className="section-divider reveal"></div>
       <Contact />
-      <div className="section-divider"></div>
+      <div className="section-divider reveal"></div>
       <FAQ />
       <Footer />
       <PageEffects />

@@ -2,7 +2,7 @@ import BP from '@/lib/basePath';
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="reveal">
       <div className="footer-inner">
         <div className="footer-top">
 
