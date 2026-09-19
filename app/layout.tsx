@@ -4,6 +4,7 @@ import "./globals.css";
 import MobileMenu from "@/components/MobileMenu";
 import LoadingScreen from "@/components/LoadingScreen";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const ibmPlexSans = IBM_Plex_Sans({
   weight: ["300", "400", "500", "600", "700"],
@@ -34,6 +35,7 @@ export default function RootLayout({
         <MobileMenu />
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
