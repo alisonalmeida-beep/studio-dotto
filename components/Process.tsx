@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useI18n } from './LocaleProvider';
 
 const ICON_SEQUENCES: Record<string, { sel: string; dur: number; delay: number }[]> = {
   'icon-discovery': [
@@ -50,6 +51,7 @@ function playIcon(step: HTMLElement) {
 }
 
 export default function Process() {
+  const { t } = useI18n();
   useEffect(() => {
     const steps = Array.from(document.querySelectorAll<HTMLElement>('.step'));
     const container = document.querySelector('.processo-steps');
@@ -80,8 +82,8 @@ export default function Process() {
       <div className="section-inner">
         <div className="processo-wrap reveal">
           <div className="processo-header">
-            <span className="section-label">Método</span>
-            <h2 className="section-title">Processo de criação</h2>
+            <span className="section-label">{t.process.label}</span>
+            <h2 className="section-title">{t.process.title}</h2>
           </div>
           <div className="processo-steps">
 
@@ -92,8 +94,8 @@ export default function Process() {
                 <ellipse className="globe-e2" cx="30.2721" cy="30.6797" rx="13.4694" ry="29.7959" stroke="black" strokeWidth="0.952993"/>
                 <path className="globe-line" d="M29.8643 0.475586V60.4756" stroke="black" strokeWidth="0.953124"/>
               </svg>
-              <div className="step-title">Descoberta</div>
-              <p className="step-desc">Analisamos o mercado em que sua marca está inserida, pesquisando tendências e oportunidades. Estudamos os concorrentes diretos e indiretos para entender suas estratégias visuais e analisamos o comportamento do seu público-alvo.</p>
+              <div className="step-title">{t.process.steps[0].title}</div>
+              <p className="step-desc">{t.process.steps[0].desc}</p>
             </div>
 
             <div className="step">
@@ -103,8 +105,8 @@ export default function Process() {
                 <circle className="ring-3" cx="30.4766" cy="47.1202" r="13.3565" stroke="black" strokeWidth="0.953124"/>
                 <circle className="ring-4" cx="30.4768" cy="54.5179" r="5.95927" stroke="black" strokeWidth="0.953124"/>
               </svg>
-              <div className="step-title">Desenvolvimento</div>
-              <p className="step-desc">Com as informações coletadas, desenvolvemos conceitos iniciais, sistema visual, paleta de cores, tipografia e elementos gráficos. Garantimos que o design seja versátil e aplicável em diversas mídias, refinando as opções conforme o feedback.</p>
+              <div className="step-title">{t.process.steps[1].title}</div>
+              <p className="step-desc">{t.process.steps[1].desc}</p>
             </div>
 
             <div className="step">
@@ -114,8 +116,8 @@ export default function Process() {
                 <ellipse className="orbit-3" cx="30.4763" cy="30.4766" rx="11.0204" ry="30" transform="rotate(-135 30.4763 30.4766)" stroke="black" strokeWidth="0.952993"/>
                 <ellipse className="orbit-4" cx="11.0204" cy="30" rx="11.0204" ry="30" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 43.8975 59.4824)" stroke="black" strokeWidth="0.952993"/>
               </svg>
-              <div className="step-title">Apresentação</div>
-              <p className="step-desc">Apresentamos o sistema visual detalhadamente aos responsáveis pelo projeto, explicando as escolhas de design e como elas atendem aos objetivos da marca. Coletamos feedback, realizamos ajustes necessários e buscamos a aprovação final.</p>
+              <div className="step-title">{t.process.steps[2].title}</div>
+              <p className="step-desc">{t.process.steps[2].desc}</p>
             </div>
 
           </div>

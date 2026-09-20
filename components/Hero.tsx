@@ -2,15 +2,18 @@
 
 import { useEffect, useRef } from 'react';
 import Button from './Button';
+import RichText from './RichText';
+import { useI18n } from './LocaleProvider';
 
 const R = 56;
 const STIFFNESS = 0.10;
 const DAMPING = 0.78;
 
 export default function Hero() {
+  const { t } = useI18n();
   const wrapRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
-  const revealRef = useRef<HTMLHeadingElement>(null);
+  const revealRef = useRef<HTMLDivElement>(null);
   const dotsCanvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -145,9 +148,7 @@ export default function Hero() {
     };
   }, []);
 
-  const titleContent = (
-    <>Criando marcas com <span>significado</span><br />e experiências <span>intuitivas.</span></>
-  );
+  const titleContent = <RichText text={t.hero.title} />;
 
   return (
     <div className="hero">
@@ -155,22 +156,22 @@ export default function Hero() {
       <div className="hero-inner">
         <div className="hero-body">
           <div className="hero-left">
-            <p className="hero-left-bio">Mais de 6 anos criando marcas e produtos digitais para startups. Design com método, entregue com intenção.</p>
+            <p className="hero-left-bio">{t.hero.bio}</p>
           </div>
           <div className="hero-title-wrap" ref={wrapRef}>
             <h1 className="hero-title">{titleContent}</h1>
-            <h1 className="hero-title hero-title-reveal" ref={revealRef} aria-hidden="true">{titleContent}</h1>
+            <div className="hero-title hero-title-reveal" ref={revealRef} aria-hidden="true">{titleContent}</div>
             <div className="hero-cursor" ref={cursorRef} />
           </div>
         </div>
         <div className="hero-bottom">
           <span className="hero-available-badge">
             <span className="hero-available-dot" />
-            Disponível para novos projetos
+            {t.hero.badge}
           </span>
           <div className="hero-actions">
-            <Button href="#projetos" variant="primary">Ver projetos</Button>
-            <Button href="https://api.whatsapp.com/send/?phone=5588994360637&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" variant="ghost">Vamos conversar</Button>
+            <Button href="#projetos" variant="primary">{t.hero.ctaProjects}</Button>
+            <Button href="https://api.whatsapp.com/send/?phone=5588994360637&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" variant="ghost">{t.hero.ctaTalk}</Button>
           </div>
         </div>
       </div>

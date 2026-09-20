@@ -1,10 +1,16 @@
 'use client';
 
 import { useEffect } from 'react';
+import Image from 'next/image';
 import BP from '@/lib/basePath';
+import LazyVideo from './LazyVideo';
+import { useI18n } from './LocaleProvider';
+import { localePath } from '@/lib/i18n/routes';
+import { fmt } from '@/lib/i18n/format';
 import Button from './Button';
 
 export default function Projects() {
+  const { locale, t } = useI18n();
   useEffect(() => {
     const el = document.getElementById('projetosCarousel');
     const prevBtn = document.getElementById('carouselPrev') as HTMLButtonElement | null;
@@ -112,20 +118,6 @@ export default function Projects() {
     el.addEventListener('scroll', updateButtons, { passive: true });
     updateButtons();
 
-    const trinkeryCard = document.getElementById('trinkeryCard');
-    const trinkeryVideo = document.getElementById('trinkeryHoverVideo') as HTMLVideoElement | null;
-    function onTrinkeryEnter() { trinkeryVideo?.play(); }
-    function onTrinkeryLeave() { if (trinkeryVideo) { trinkeryVideo.pause(); trinkeryVideo.currentTime = 0; } }
-    trinkeryCard?.addEventListener('mouseenter', onTrinkeryEnter);
-    trinkeryCard?.addEventListener('mouseleave', onTrinkeryLeave);
-
-    const unikosCard = document.getElementById('unikosCard');
-    const unikosVideo = document.getElementById('unikosHoverVideo') as HTMLVideoElement | null;
-    function onUnikosEnter() { unikosVideo?.play(); }
-    function onUnikosLeave() { if (unikosVideo) { unikosVideo.pause(); unikosVideo.currentTime = 0; } }
-    unikosCard?.addEventListener('mouseenter', onUnikosEnter);
-    unikosCard?.addEventListener('mouseleave', onUnikosLeave);
-
     return () => {
       el.removeEventListener('mousedown', onMouseDown);
       el.removeEventListener('click', onClickCapture, true);
@@ -135,10 +127,6 @@ export default function Projects() {
       if (prevBtn) prevBtn.removeEventListener('click', onPrevClick);
       if (nextBtn) nextBtn.removeEventListener('click', onNextClick);
       el.removeEventListener('scroll', updateButtons);
-      trinkeryCard?.removeEventListener('mouseenter', onTrinkeryEnter);
-      trinkeryCard?.removeEventListener('mouseleave', onTrinkeryLeave);
-      unikosCard?.removeEventListener('mouseenter', onUnikosEnter);
-      unikosCard?.removeEventListener('mouseleave', onUnikosLeave);
     };
   }, []);
 
@@ -147,12 +135,12 @@ export default function Projects() {
       <div className="section-inner">
         <div className="reveal">
           <div className="projetos-header">
-            <div><span className="section-label">Projetos</span></div>
+            <div><span className="section-label">{t.projects.label}</span></div>
             <div className="carousel-nav">
-              <Button variant="secondary" className="carousel-btn" id="carouselPrev" aria-label="Anterior">
+              <Button variant="secondary" className="carousel-btn" id="carouselPrev" aria-label={t.projects.prev}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
               </Button>
-              <Button variant="secondary" className="carousel-btn" id="carouselNext" aria-label="Próximo">
+              <Button variant="secondary" className="carousel-btn" id="carouselNext" aria-label={t.projects.next}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
               </Button>
             </div>
@@ -162,128 +150,92 @@ export default function Projects() {
       <div className="projetos-carousel-outer reveal">
         <div className="projetos-carousel" id="projetosCarousel">
 
-          <a href={`${BP}/projects/escritorio-inteligente`} className="projeto-card">
+          <a href={`${BP}${localePath(locale, '/projects/escritorio-inteligente')}`} className="projeto-card">
             <div className="projeto-thumb-wrap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/escritorio-inteligente/cover-escritorio-inteligente.png`} alt="Escritório Inteligente" className="projeto-thumb" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/escritorio-inteligente/logo-reveal.gif`} alt="" className="projeto-thumb-hover" />
-              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+              <Image src={`${BP}/projects/escritorio-inteligente/cover-escritorio-inteligente.png`} alt={fmt(t.projects.coverAlt, { name: 'Escritório Inteligente' })} width={1872} height={1219} sizes="(max-width: 900px) 80vw, 480px" className="projeto-thumb" />
+              <LazyVideo src="/projects/escritorio-inteligente/logo-reveal.mp4" width={1600} height={1000} label="" className="projeto-thumb-hover" playOnHover />
+              <div className="projeto-thumb-overlay"><span>{t.common.viewProject}</span></div>
             </div>
-            <div className="projeto-card-label">Escritório Inteligente</div>
+            <h3 className="projeto-card-label">Escritório Inteligente</h3>
           </a>
 
-          <a href={`${BP}/projects/trinkery`} className="projeto-card" id="trinkeryCard">
+          <a href={`${BP}${localePath(locale, '/projects/trinkery')}`} className="projeto-card">
             <div className="projeto-thumb-wrap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/trinkery/6-bag-mockup.png`} alt="Trinkery" className="projeto-thumb" />
-              <video
-                id="trinkeryHoverVideo"
-                className="projeto-thumb-hover"
-                muted
-                playsInline
-                loop
-                preload="metadata"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              >
-                <source src={`${BP}/projects/trinkery/4-showcase-1080p.mp4`} type="video/mp4" />
-              </video>
-              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+              <Image src={`${BP}/projects/trinkery/6-bag-mockup.png`} alt={fmt(t.projects.coverAlt, { name: 'Trinkery' })} width={1920} height={1280} sizes="(max-width: 900px) 80vw, 480px" className="projeto-thumb" />
+              <LazyVideo src="/projects/trinkery/4-showcase-1080p.mp4" width={1600} height={1000} label="" className="projeto-thumb-hover" playOnHover />
+              <div className="projeto-thumb-overlay"><span>{t.common.viewProject}</span></div>
             </div>
-            <div className="projeto-card-label">Trinkery</div>
+            <h3 className="projeto-card-label">Trinkery</h3>
           </a>
 
-          <a href={`${BP}/projects/dcvmn`} className="projeto-card">
+          <a href={`${BP}${localePath(locale, '/projects/dcvmn')}`} className="projeto-card">
             <div className="projeto-thumb-wrap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/dcvmn/cover-dcvmn.png`} alt="DCVMN" className="projeto-thumb" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/dcvmn/5-logo-reveal-dcvmn.gif`} alt="" className="projeto-thumb-hover" />
-              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+              <Image src={`${BP}/projects/dcvmn/cover-dcvmn.png`} alt={fmt(t.projects.coverAlt, { name: 'DCVMN' })} width={1920} height={1280} sizes="(max-width: 900px) 80vw, 480px" className="projeto-thumb" />
+              <LazyVideo src="/projects/dcvmn/5-logo-reveal-dcvmn.mp4" width={1600} height={1000} label="" className="projeto-thumb-hover" playOnHover />
+              <div className="projeto-thumb-overlay"><span>{t.common.viewProject}</span></div>
             </div>
-            <div className="projeto-card-label">DCVMN</div>
+            <h3 className="projeto-card-label">DCVMN</h3>
           </a>
 
-          <a href={`${BP}/projects/ligy-energia`} className="projeto-card">
+          <a href={`${BP}${localePath(locale, '/projects/ligy-energia')}`} className="projeto-card">
             <div className="projeto-thumb-wrap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/ligy-energia/cover-ligy-energia.png`} alt="Ligy Energia" className="projeto-thumb" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/ligy-energia/4-ligy.gif`} alt="" className="projeto-thumb-hover" />
-              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+              <Image src={`${BP}/projects/ligy-energia/cover-ligy-energia.png`} alt={fmt(t.projects.coverAlt, { name: 'Ligy Energia' })} width={1920} height={1280} sizes="(max-width: 900px) 80vw, 480px" className="projeto-thumb" />
+              <LazyVideo src="/projects/ligy-energia/4-ligy.mp4" width={1600} height={1000} label="" className="projeto-thumb-hover" playOnHover />
+              <div className="projeto-thumb-overlay"><span>{t.common.viewProject}</span></div>
             </div>
-            <div className="projeto-card-label">Ligy Energia</div>
+            <h3 className="projeto-card-label">Ligy Energia</h3>
           </a>
 
-          <a href={`${BP}/projects/profitor`} className="projeto-card">
+          <a href={`${BP}${localePath(locale, '/projects/profitor')}`} className="projeto-card">
             <div className="projeto-thumb-wrap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/profitor/12-profitor.png`} alt="Profitor" className="projeto-thumb" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/profitor/3-profitor.gif`} alt="" className="projeto-thumb-hover" />
-              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+              <Image src={`${BP}/projects/profitor/12-profitor.png`} alt={fmt(t.projects.coverAlt, { name: 'Profitor' })} width={2880} height={1621} sizes="(max-width: 900px) 80vw, 480px" className="projeto-thumb" />
+              <LazyVideo src="/projects/profitor/3-profitor.mp4" width={1600} height={1000} label="" className="projeto-thumb-hover" playOnHover />
+              <div className="projeto-thumb-overlay"><span>{t.common.viewProject}</span></div>
             </div>
-            <div className="projeto-card-label">Profitor</div>
+            <h3 className="projeto-card-label">Profitor</h3>
           </a>
 
-          <a href={`${BP}/projects/lunes`} className="projeto-card">
+          <a href={`${BP}${localePath(locale, '/projects/lunes')}`} className="projeto-card">
             <div className="projeto-thumb-wrap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/lunes/18-lunes.jpg`} alt="Lunes" className="projeto-thumb" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/lunes/4-lunes.gif`} alt="" className="projeto-thumb-hover" />
-              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+              <Image src={`${BP}/projects/lunes/18-lunes.jpg`} alt={fmt(t.projects.coverAlt, { name: 'Lunes' })} width={1400} height={788} sizes="(max-width: 900px) 80vw, 480px" className="projeto-thumb" />
+              <LazyVideo src="/projects/lunes/4-lunes.mp4" width={1600} height={1000} label="" className="projeto-thumb-hover" playOnHover />
+              <div className="projeto-thumb-overlay"><span>{t.common.viewProject}</span></div>
             </div>
-            <div className="projeto-card-label">Lunes</div>
+            <h3 className="projeto-card-label">Lunes</h3>
           </a>
 
-          <a href={`${BP}/projects/colin`} className="projeto-card">
+          <a href={`${BP}${localePath(locale, '/projects/colin')}`} className="projeto-card">
             <div className="projeto-thumb-wrap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/colin/1-colin.jpg`} alt="Colin" className="projeto-thumb" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/colin/2-colin.gif`} alt="" className="projeto-thumb-hover" />
-              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+              <Image src={`${BP}/projects/colin/1-colin.jpg`} alt={fmt(t.projects.coverAlt, { name: 'Colin' })} width={1400} height={887} sizes="(max-width: 900px) 80vw, 480px" className="projeto-thumb" />
+              <LazyVideo src="/projects/colin/2-colin.mp4" width={1600} height={1000} label="" className="projeto-thumb-hover" playOnHover />
+              <div className="projeto-thumb-overlay"><span>{t.common.viewProject}</span></div>
             </div>
-            <div className="projeto-card-label">Colin</div>
+            <h3 className="projeto-card-label">Colin</h3>
           </a>
 
-          <a href={`${BP}/projects/clave`} className="projeto-card">
+          <a href={`${BP}${localePath(locale, '/projects/clave')}`} className="projeto-card">
             <div className="projeto-thumb-wrap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/clave/10-clave.jpg`} alt="Clave" className="projeto-thumb" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/clave/2-clave.gif`} alt="" className="projeto-thumb-hover" />
-              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+              <Image src={`${BP}/projects/clave/10-clave.jpg`} alt={fmt(t.projects.coverAlt, { name: 'Clave' })} width={1400} height={788} sizes="(max-width: 900px) 80vw, 480px" className="projeto-thumb" />
+              <LazyVideo src="/projects/clave/2-clave.mp4" width={1600} height={1000} label="" className="projeto-thumb-hover" playOnHover />
+              <div className="projeto-thumb-overlay"><span>{t.common.viewProject}</span></div>
             </div>
-            <div className="projeto-card-label">Clave</div>
+            <h3 className="projeto-card-label">Clave</h3>
           </a>
 
-          <a href={`${BP}/projects/unikos`} className="projeto-card" id="unikosCard">
+          <a href={`${BP}${localePath(locale, '/projects/unikos')}`} className="projeto-card">
             <div className="projeto-thumb-wrap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/projects/unikos/11-unikos.jpg`} alt="Unikos" className="projeto-thumb" />
-              <video
-                id="unikosHoverVideo"
-                className="projeto-thumb-hover"
-                muted
-                playsInline
-                loop
-                preload="metadata"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              >
-                <source src={`${BP}/projects/unikos/21-unikos.mp4`} type="video/mp4" />
-              </video>
-              <div className="projeto-thumb-overlay"><span>Ver projeto</span></div>
+              <Image src={`${BP}/projects/unikos/11-unikos.jpg`} alt={fmt(t.projects.coverAlt, { name: 'Unikos' })} width={1400} height={788} sizes="(max-width: 900px) 80vw, 480px" className="projeto-thumb" />
+              <LazyVideo src="/projects/unikos/21-unikos.mp4" width={1600} height={1000} label="" className="projeto-thumb-hover" playOnHover />
+              <div className="projeto-thumb-overlay"><span>{t.common.viewProject}</span></div>
             </div>
-            <div className="projeto-card-label">Unikos</div>
+            <h3 className="projeto-card-label">Unikos</h3>
           </a>
 
         </div>
       </div>
       <div className="projetos-ver-mais">
-        <Button href={`${BP}/projetos`} variant="secondary">
-          Ver todos os projetos
+        <Button href={`${BP}${localePath(locale, '/projetos')}`} variant="secondary">
+          {t.projects.viewAll}
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
         </Button>
       </div>

@@ -1,32 +1,38 @@
+'use client';
+
 import BP from '@/lib/basePath';
+import { useI18n } from './LocaleProvider';
+import { localePath } from '@/lib/i18n/routes';
 
 export default function Footer() {
+  const { locale, t } = useI18n();
+  const home = (hash = '') => `${BP}${localePath(locale, `/${hash}`)}`;
   return (
     <footer className="reveal">
       <div className="footer-inner">
         <div className="footer-top">
 
           <div className="footer-brand">
-            <a href={`${BP}/`} className="footer-logo">
+            <a href={home()} className="footer-logo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/assets/logotype/logo-symbol.svg`} alt="Studio Dotto" />
+              <img src={`${BP}/assets/logotype/logo-symbol.svg`} alt={t.common.logoAlt} />
             </a>
-            <p className="footer-tagline">by Studio Dotto</p>
+            <p className="footer-tagline">{t.footer.tagline}</p>
           </div>
 
           <div>
-            <p className="footer-col-title">Navegação</p>
+            <p className="footer-col-title">{t.footer.navTitle}</p>
             <ul className="footer-nav-links">
-              <li><a href={`${BP}/`}>Home</a></li>
-              <li><a href="#sobre">Sobre</a></li>
-              <li><a href="#projetos">Projetos</a></li>
-              <li><a href="#contato">Contato</a></li>
-              <li><a href="#faq">Dúvidas</a></li>
+              <li><a href={home()}>{t.footer.nav.home}</a></li>
+              <li><a href={home('#sobre')}>{t.footer.nav.about}</a></li>
+              <li><a href={home('#projetos')}>{t.footer.nav.projects}</a></li>
+              <li><a href={home('#contato')}>{t.footer.nav.contact}</a></li>
+              <li><a href={home('#faq')}>{t.footer.nav.faq}</a></li>
             </ul>
           </div>
 
           <div>
-            <p className="footer-col-title">Social</p>
+            <p className="footer-col-title">{t.footer.socialTitle}</p>
             <div className="footer-social-links">
               <a href="https://www.instagram.com/oalisonorsi/" target="_blank" rel="noopener noreferrer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
@@ -42,7 +48,7 @@ export default function Footer() {
         </div>
         <div className="footer-divider"></div>
         <div className="footer-bottom">
-          <span className="footer-copy">© 2026 Studio Dotto. Todos os direitos reservados.</span>
+          <span className="footer-copy">{t.footer.copyright}</span>
         </div>
       </div>
     </footer>

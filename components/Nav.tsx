@@ -2,8 +2,14 @@
 
 import { useEffect } from 'react';
 import BP from '@/lib/basePath';
+import { useI18n } from './LocaleProvider';
+import LanguageSwitch from './LanguageSwitch';
+import { localePath } from '@/lib/i18n/routes';
 
 export default function Nav() {
+  const { locale, t } = useI18n();
+  const homePath = `${BP}${localePath(locale, '/')}`;
+
   useEffect(() => {
     const navCta = document.getElementById('navCta');
     const navSocials = document.getElementById('navSocials');
@@ -35,7 +41,7 @@ export default function Nav() {
     });
 
     const homeLink = document.querySelector<HTMLAnchorElement>('.nav-center a[data-nav="home"]');
-    const homeBasePath = BP || '/';
+    const homeBasePath = homePath;
     function onHomeClick(e: Event) {
       const onHomePage = window.location.pathname === homeBasePath || window.location.pathname === homeBasePath + '/';
       if (onHomePage) {
@@ -78,40 +84,43 @@ export default function Nav() {
       sectionObserver.disconnect();
       homeLink?.removeEventListener('click', onHomeClick);
     };
-  }, []);
+  }, [homePath]);
 
   return (
     <nav>
       <div className="nav-left">
-        <a href={`${BP}/`}>
+        <a href={homePath}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${BP}/assets/logotype/logo-symbol.svg`} alt="Studio Dotto" className="nav-left-logo" width={24} height={24} />
+          <img src={`${BP}/assets/logotype/logo-symbol.svg`} alt={t.common.logoAlt} className="nav-left-logo" width={24} height={24} />
         </a>
       </div>
 
       <div className="nav-center">
-        <a href={`${BP}/`} data-nav="home" className="active">Home</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#contato">Contato</a>
+        <a href={homePath} data-nav="home" className="active">{t.nav.home}</a>
+        <a href="#sobre">{t.nav.about}</a>
+        <a href="#projetos">{t.nav.projects}</a>
+        <a href="#contato">{t.nav.contact}</a>
       </div>
 
       <div className="nav-right">
-        <div className="nav-socials" id="navSocials">
-          <a href="https://www.instagram.com/oalisonorsi/" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/oalisonalmeida/" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        <div className="nav-actions">
+          <div className="nav-socials" id="navSocials">
+            <a href="https://www.instagram.com/oalisonorsi/" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/oalisonalmeida/" target="_blank" rel="noopener noreferrer" className="nav-social" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+          <a href="https://calendly.com/alisonalmeidadsn/30min" target="_blank" rel="noopener noreferrer" className="nav-cta" id="navCta" aria-label={t.common.bookCall}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span className="nav-cta-label">{t.common.bookCall}</span>
           </a>
         </div>
-        <a href="https://calendly.com/alisonalmeidadsn/30min" target="_blank" rel="noopener noreferrer" className="nav-cta" id="navCta">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-          Marcar reunião
-        </a>
+        <LanguageSwitch />
         <button
           className="nav-hamburger"
-          aria-label="Menu"
+          aria-label={t.common.menu}
           onClick={() => {
             document.getElementById('mobileMenu')?.classList.add('open');
             document.body.style.overflow = 'hidden';
